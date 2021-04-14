@@ -17,9 +17,13 @@
 
 - (void)setSuit:(NSString*)input;
 
-- (NSString*)getvalue;
+- (NSString*)getValue;
 
 - (void)setValue:(NSString*)input;
+
+- (int)compareValues:(Card*)second;
+
+- (int)getFaceValue:(NSString*)stringValue;
 
 @end
 

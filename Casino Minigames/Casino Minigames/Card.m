@@ -17,7 +17,7 @@
     suit = input;
 }
 
-- (NSString*)getvalue{
+- (NSString*)getValue{
     return value;
 }
 
@@ -165,6 +165,35 @@
     suit = @"";
     value = @"";
     return self;
+}
+
+- (int)compareValues:(Card*)second{
+    int value1 = -1;
+    int value2 = -1;
+    NSString* stringValue1 = [self getValue];
+    NSString* stringValue2 = [second getValue];
+    value1 = [self getFaceValue:stringValue1];
+    value2 = [self getFaceValue:stringValue2];
+    if(value1 == -1){
+        value1 = [stringValue1 intValue];
+    }
+    if(value2 == -1){
+        value2 = [stringValue2 intValue];
+    }
+    return (value2 - value1);
+}
+
+- (int)getFaceValue:(NSString*)stringValue{
+    if([stringValue isEqualToString:@"Jack"]){
+        return 11;
+    } else if([stringValue isEqualToString:@"Queen"]){
+        return 12;
+    } else if([stringValue isEqualToString:@"King"]){
+        return 13;
+    } else if([stringValue isEqualToString:@"Ace"]){
+        return 14;
+    }
+    return -1;
 }
 
 @end
