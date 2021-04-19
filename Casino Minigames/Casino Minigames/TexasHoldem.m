@@ -80,7 +80,7 @@
     [hand addObject:[self getCard:@"4" :@"Hearts"]];
     result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 432 7 Clubs");
+    NSLog(@"Actual: 432 Jack Diamonds");
     //Four of a Kind
     [hand removeAllObjects];
     [hand addObject:[self getCard:@"9" :@"Clubs"]];
@@ -212,7 +212,7 @@
         [result setPoints:equalValuePoints];
         return result;
     }
-    int highestCardValue = [self getValuePoints:hand[[hand count] - 1]];
+    int highestCardValue = [self getValuePoints:hand[[hand count] - 1]] - 2;
     [result setPoints:highestCardValue]; //Garbage
     return result;
 }
@@ -293,6 +293,11 @@
     } else if([set1 count] == 2){
         if([set2 count] == 2){
             int firstSet2CardValue = [self getValuePoints:set2[0]];
+            if(firstSet2CardValue > firstSet1CardValue){
+                int bufferCardValue = firstSet2CardValue;
+                firstSet2CardValue = firstSet1CardValue;
+                firstSet1CardValue = bufferCardValue;
+            }
             int addValue = (firstSet1CardValue - 2) * 13 + firstSet2CardValue - 2;
             return(26 + addValue);
         } else {
