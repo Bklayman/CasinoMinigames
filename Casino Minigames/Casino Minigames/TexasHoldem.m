@@ -78,6 +78,7 @@
     [hand addObject:[self getCard:@"3" :@"Clubs"]];
     [hand addObject:[self getCard:@"Jack" :@"Diamonds"]];
     [hand addObject:[self getCard:@"4" :@"Hearts"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 432 7 Clubs");
     //Four of a Kind
@@ -89,6 +90,7 @@
     [hand addObject:[self getCard:@"6" :@"Spades"]];
     [hand addObject:[self getCard:@"King" :@"Diamonds"]];
     [hand addObject:[self getCard:@"8" :@"Diamonds"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 422 King Diamonds");
     //Full House
@@ -100,6 +102,7 @@
     [hand addObject:[self getCard:@"5" :@"Clubs"]];
     [hand addObject:[self getCard:@"4" :@"Clubs"]];
     [hand addObject:[self getCard:@"10" :@"Diamonds"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 380 Queen Spades/Hearts/Diamonds");
     //Straight
@@ -111,6 +114,7 @@
     [hand addObject:[self getCard:@"10" :@"Diamonds"]];
     [hand addObject:[self getCard:@"Ace" :@"Spades"]];
     [hand addObject:[self getCard:@"3" :@"Clubs"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 241 Ace Spades");
     //Three of a Kind
@@ -122,6 +126,7 @@
     [hand addObject:[self getCard:@"6" :@"Hearts"]];
     [hand addObject:[self getCard:@"10" :@"Diamonds"]];
     [hand addObject:[self getCard:@"2" :@"Spades"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 227 10 Diamonds");
     //Two Pair
@@ -133,6 +138,7 @@
     [hand addObject:[self getCard:@"9" :@"Hearts"]];
     [hand addObject:[self getCard:@"King" :@"Clubs"]];
     [hand addObject:[self getCard:@"4" :@"Clubs"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 148 King Clubs");
     //One Pair
@@ -144,6 +150,7 @@
     [hand addObject:[self getCard:@"6" :@"Spades"]];
     [hand addObject:[self getCard:@"King" :@"Spades"]];
     [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 14 Ace Hearts");
     //Garbage
@@ -155,6 +162,7 @@
     [hand addObject:[self getCard:@"6" :@"Hearts"]];
     [hand addObject:[self getCard:@"King" :@"Spades"]];
     [hand addObject:[self getCard:@"2" :@"Diamonds"]];
+    result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
     NSLog(@"Actual: 11 King Spades");
 }
@@ -183,8 +191,8 @@
 
 - (PointObject*)getHandPoints:(NSMutableArray*)hand{
     PointObject* result = [[PointObject alloc] init];
-    [result setKicker:hand[[hand count] - 1]];
     hand = [self sortHand:hand];
+    [result setKicker:hand[[hand count] - 1]];
     int flushPoints = [self checkForFlush:hand];
     if(flushPoints != -1){ //Flush, straight flush, or royal flush
         [result setPoints:flushPoints];
@@ -224,7 +232,7 @@
 
 - (int)checkForStraight:(NSMutableArray*)hand{
     int ordered = 1;
-    for(int i = 0; i < [hand count]; i++){
+    for(int i = 0; i < [hand count] - 1; i++){
         if([hand[i] compareValues:hand[i + 1]] == 1){
             ordered++;
         } else if([hand[i] compareValues:hand[i + 1]] != 0){
@@ -251,10 +259,10 @@
         } else {
             if([currentCheck count] > 0){
                 if([currentCheck count] > [set1 count]){
-                    set2 = set1;
-                    set1 = currentCheck;
+                    set2 = [set1 mutableCopy];
+                    set1 = [currentCheck mutableCopy];
                 } else if([currentCheck count] > [set2 count]){
-                    set2 = currentCheck;
+                    set2 = [currentCheck mutableCopy];
                 }
                 [currentCheck removeAllObjects];
             }
@@ -262,11 +270,14 @@
     }
     if([currentCheck count] > 0){
         if([currentCheck count] > [set1 count]){
-            set2 = set1;
-            set1 = currentCheck;
+            set2 = [set1 mutableCopy];
+            set1 = [currentCheck mutableCopy];
         } else if([currentCheck count] > [set2 count]){
-            set2 = currentCheck;
+            set2 = [currentCheck mutableCopy];
         }
+    }
+    if([set1 count] == 0){
+        return -1;
     }
     int firstSet1CardValue = [self getValuePoints:set1[0]];
     if([set1 count] == 4){
@@ -274,7 +285,7 @@
     } else if([set1 count] == 3){
         if([set2 count] == 2){
             int firstSet2CardValue = [self getValuePoints:set2[0]];
-            int addValue = (firstSet1CardValue - 2) * 12 + firstSet2CardValue - 2;
+            int addValue = (firstSet1CardValue - 2) * 13 + firstSet2CardValue - 2;
             return (247 + addValue);
         } else {
             return (221 + firstSet1CardValue - 2);
@@ -282,7 +293,7 @@
     } else if([set1 count] == 2){
         if([set2 count] == 2){
             int firstSet2CardValue = [self getValuePoints:set2[0]];
-            int addValue = (firstSet1CardValue - 2) * 12 + firstSet2CardValue - 2;
+            int addValue = (firstSet1CardValue - 2) * 13 + firstSet2CardValue - 2;
             return(26 + addValue);
         } else {
             return (13 + firstSet1CardValue - 2);
