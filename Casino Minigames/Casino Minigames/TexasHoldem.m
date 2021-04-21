@@ -50,121 +50,58 @@
 
 @implementation TexasHoldem
 
+NSMutableArray* deck;
+NSMutableArray* playerCards;
+NSMutableArray* dealerCards;
+NSMutableArray* turnOrder; //0 -> dealer, 1 -> player
+
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self pointCalculatorTest];
+    deck = [Card shuffleDeckRandom: [Card createDeck]];
+    playerCards = [[NSMutableArray alloc] init];
+    dealerCards = [[NSMutableArray alloc] init];
+    turnOrder = [[NSMutableArray alloc] init];
+    [self startRound];
+    if([turnOrder[0] intValue] == 0){
+        [self dealerTurn];
+    }
 }
 
-- (void)pointCalculatorTest{
-    NSMutableArray* hand = [[NSMutableArray alloc]init];
-    PointObject* result;
-    //Royal Flush
-    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
-    [hand addObject:[self getCard:@"King" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Queen" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Jack" :@"Hearts"]];
-    [hand addObject:[self getCard:@"10" :@"Hearts"]];
-    [hand addObject:[self getCard:@"3" :@"Clubs"]];
-    [hand addObject:[self getCard:@"7" :@"Spades"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 440 Ace Hearts");
-    //Straight Flush
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"7" :@"Clubs"]];
-    [hand addObject:[self getCard:@"6" :@"Clubs"]];
-    [hand addObject:[self getCard:@"5" :@"Clubs"]];
-    [hand addObject:[self getCard:@"4" :@"Clubs"]];
-    [hand addObject:[self getCard:@"3" :@"Clubs"]];
-    [hand addObject:[self getCard:@"Jack" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"4" :@"Hearts"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 432 Jack Diamonds");
-    //Four of a Kind
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"9" :@"Clubs"]];
-    [hand addObject:[self getCard:@"9" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"9" :@"Hearts"]];
-    [hand addObject:[self getCard:@"9" :@"Spades"]];
-    [hand addObject:[self getCard:@"6" :@"Spades"]];
-    [hand addObject:[self getCard:@"King" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"8" :@"Diamonds"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 422 King Diamonds");
-    //Full House
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"Queen" :@"Spades"]];
-    [hand addObject:[self getCard:@"Queen" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Queen" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"5" :@"Hearts"]];
-    [hand addObject:[self getCard:@"5" :@"Clubs"]];
-    [hand addObject:[self getCard:@"4" :@"Clubs"]];
-    [hand addObject:[self getCard:@"10" :@"Diamonds"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 380 Queen Spades/Hearts/Diamonds");
-    //Straight
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"6" :@"Spades"]];
-    [hand addObject:[self getCard:@"7" :@"Hearts"]];
-    [hand addObject:[self getCard:@"8" :@"Spades"]];
-    [hand addObject:[self getCard:@"9" :@"Clubs"]];
-    [hand addObject:[self getCard:@"10" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"Ace" :@"Spades"]];
-    [hand addObject:[self getCard:@"3" :@"Clubs"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 241 Ace Spades");
-    //Three of a Kind
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"8" :@"Spades"]];
-    [hand addObject:[self getCard:@"8" :@"Hearts"]];
-    [hand addObject:[self getCard:@"8" :@"Clubs"]];
-    [hand addObject:[self getCard:@"7" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"6" :@"Hearts"]];
-    [hand addObject:[self getCard:@"10" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"2" :@"Spades"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 227 10 Diamonds");
-    //Two Pair
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"Jack" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"Jack" :@"Hearts"]];
-    [hand addObject:[self getCard:@"7" :@"Spades"]];
-    [hand addObject:[self getCard:@"7" :@"Clubs"]];
-    [hand addObject:[self getCard:@"9" :@"Hearts"]];
-    [hand addObject:[self getCard:@"King" :@"Clubs"]];
-    [hand addObject:[self getCard:@"4" :@"Clubs"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 148 King Clubs");
-    //One Pair
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"3" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"3" :@"Spades"]];
-    [hand addObject:[self getCard:@"2" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"5" :@"Hearts"]];
-    [hand addObject:[self getCard:@"6" :@"Spades"]];
-    [hand addObject:[self getCard:@"King" :@"Spades"]];
-    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 14 Ace Hearts");
-    //Garbage
-    [hand removeAllObjects];
-    [hand addObject:[self getCard:@"Jack" :@"Hearts"]];
-    [hand addObject:[self getCard:@"9" :@"Clubs"]];
-    [hand addObject:[self getCard:@"8" :@"Clubs"]];
-    [hand addObject:[self getCard:@"3" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"6" :@"Hearts"]];
-    [hand addObject:[self getCard:@"King" :@"Spades"]];
-    [hand addObject:[self getCard:@"2" :@"Diamonds"]];
-    result = [self getHandPoints:hand];
-    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 11 King Spades");
+- (void)dealerTurn{
+    //TODO
+}
+
+- (void)startRound{
+    NSMutableArray* tempDeck = deck;
+    _dealerCard1.image = [UIImage imageNamed:@"PNG/red_back.png"];
+    _dealerCard2.image = [UIImage imageNamed:@"PNG/red_back.png"];
+    if([deck count] < 9){
+        deck = [Card shuffleDeckRandom: [Card createDeck]];
+    }
+    [playerCards addObject:[Card drawCard:&tempDeck]];
+    [playerCards addObject:[Card drawCard:&tempDeck]];
+    [dealerCards addObject:[Card drawCard:&tempDeck]];
+    [dealerCards addObject:[Card drawCard:&tempDeck]];
+    _playerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[0]]]];
+    _playerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[1]]]];
+    if(arc4random_uniform(2) == 0){
+        [turnOrder addObject:[NSNumber numberWithInt:0]];
+        [turnOrder addObject:[NSNumber numberWithInt:1]];
+    } else {
+        [turnOrder addObject:[NSNumber numberWithInt:1]];
+        [turnOrder addObject:[NSNumber numberWithInt:0]];
+    }
+    deck = tempDeck;
+}
+
+- (Card*)drawCardWithCheck{
+    Card* result;
+    if([deck count] == 0){
+        //TODO
+    } else {
+        //TODO
+    }
+    return result;
 }
 
 - (Card*)getCard:(NSString*)value :(NSString*)suit{
@@ -373,6 +310,118 @@
         value = [stringValue intValue];
     }
     return value;
+}
+
+- (void)pointCalculatorTest{
+    NSMutableArray* hand = [[NSMutableArray alloc]init];
+    PointObject* result;
+    //Royal Flush
+    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
+    [hand addObject:[self getCard:@"King" :@"Hearts"]];
+    [hand addObject:[self getCard:@"Queen" :@"Hearts"]];
+    [hand addObject:[self getCard:@"Jack" :@"Hearts"]];
+    [hand addObject:[self getCard:@"10" :@"Hearts"]];
+    [hand addObject:[self getCard:@"3" :@"Clubs"]];
+    [hand addObject:[self getCard:@"7" :@"Spades"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 440 Ace Hearts");
+    //Straight Flush
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"7" :@"Clubs"]];
+    [hand addObject:[self getCard:@"6" :@"Clubs"]];
+    [hand addObject:[self getCard:@"5" :@"Clubs"]];
+    [hand addObject:[self getCard:@"4" :@"Clubs"]];
+    [hand addObject:[self getCard:@"3" :@"Clubs"]];
+    [hand addObject:[self getCard:@"Jack" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"4" :@"Hearts"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 432 Jack Diamonds");
+    //Four of a Kind
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"9" :@"Clubs"]];
+    [hand addObject:[self getCard:@"9" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"9" :@"Hearts"]];
+    [hand addObject:[self getCard:@"9" :@"Spades"]];
+    [hand addObject:[self getCard:@"6" :@"Spades"]];
+    [hand addObject:[self getCard:@"King" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"8" :@"Diamonds"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 422 King Diamonds");
+    //Full House
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"Queen" :@"Spades"]];
+    [hand addObject:[self getCard:@"Queen" :@"Hearts"]];
+    [hand addObject:[self getCard:@"Queen" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"5" :@"Hearts"]];
+    [hand addObject:[self getCard:@"5" :@"Clubs"]];
+    [hand addObject:[self getCard:@"4" :@"Clubs"]];
+    [hand addObject:[self getCard:@"10" :@"Diamonds"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 380 Queen Spades/Hearts/Diamonds");
+    //Straight
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"6" :@"Spades"]];
+    [hand addObject:[self getCard:@"7" :@"Hearts"]];
+    [hand addObject:[self getCard:@"8" :@"Spades"]];
+    [hand addObject:[self getCard:@"9" :@"Clubs"]];
+    [hand addObject:[self getCard:@"10" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"Ace" :@"Spades"]];
+    [hand addObject:[self getCard:@"3" :@"Clubs"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 241 Ace Spades");
+    //Three of a Kind
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"8" :@"Spades"]];
+    [hand addObject:[self getCard:@"8" :@"Hearts"]];
+    [hand addObject:[self getCard:@"8" :@"Clubs"]];
+    [hand addObject:[self getCard:@"7" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"6" :@"Hearts"]];
+    [hand addObject:[self getCard:@"10" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"2" :@"Spades"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 227 10 Diamonds");
+    //Two Pair
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"Jack" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"Jack" :@"Hearts"]];
+    [hand addObject:[self getCard:@"7" :@"Spades"]];
+    [hand addObject:[self getCard:@"7" :@"Clubs"]];
+    [hand addObject:[self getCard:@"9" :@"Hearts"]];
+    [hand addObject:[self getCard:@"King" :@"Clubs"]];
+    [hand addObject:[self getCard:@"4" :@"Clubs"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 148 King Clubs");
+    //One Pair
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"3" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"3" :@"Spades"]];
+    [hand addObject:[self getCard:@"2" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"5" :@"Hearts"]];
+    [hand addObject:[self getCard:@"6" :@"Spades"]];
+    [hand addObject:[self getCard:@"King" :@"Spades"]];
+    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 14 Ace Hearts");
+    //Garbage
+    [hand removeAllObjects];
+    [hand addObject:[self getCard:@"Jack" :@"Hearts"]];
+    [hand addObject:[self getCard:@"9" :@"Clubs"]];
+    [hand addObject:[self getCard:@"8" :@"Clubs"]];
+    [hand addObject:[self getCard:@"3" :@"Diamonds"]];
+    [hand addObject:[self getCard:@"6" :@"Hearts"]];
+    [hand addObject:[self getCard:@"King" :@"Spades"]];
+    [hand addObject:[self getCard:@"2" :@"Diamonds"]];
+    result = [self getHandPoints:hand];
+    NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
+    NSLog(@"Actual: 11 King Spades");
 }
 
 @end

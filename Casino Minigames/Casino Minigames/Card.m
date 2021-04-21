@@ -50,25 +50,25 @@
     return -1;
 }
 
-- (NSMutableArray*)createDeck{
++ (NSMutableArray*)createDeck{
     NSMutableArray* deck = [[NSMutableArray alloc] init];
     for(int i = 0; i < 4; i++){
         for(int j = 0; j < 13; j++){
             Card* curCard = [[Card alloc] init];
-            curCard.suit = [self getSuit:i];
-            curCard.value = [self getValue:j];
+            curCard.suit = [curCard getSuit:i];
+            curCard.value = [curCard getValue:j];
             [deck addObject:curCard];
         }
     }
     return deck;
 }
 
-- (NSMutableArray*)shuffleDeckRandom:(NSMutableArray*)deck{
++ (NSMutableArray*)shuffleDeckRandom:(NSMutableArray*)deck{
     for(int i = 0; i < 100; i++){
-        int card1 = arc4random_uniform(52);
-        int card2 = arc4random_uniform(52);
+        int card1 = arc4random_uniform((unsigned int)[deck count]);
+        int card2 = arc4random_uniform((unsigned int)[deck count]);
         while(card1 == card2){
-            card2 = arc4random_uniform(52);
+            card2 = arc4random_uniform((unsigned int)[deck count]);
         }
         Card* takeCard2 = deck[card2];
         deck[card2] = deck[card1];
@@ -77,13 +77,13 @@
     return deck;
 }
 
-- (Card*)drawCard:(NSMutableArray**)deck{
++ (Card*)drawCard:(NSMutableArray**)deck{
     if([*deck count] == 0){
-        *deck = [self shuffleDeckRandom:[self createDeck]];
+        *deck = [Card shuffleDeckRandom:[Card createDeck]];
     }
-    Card* drawenCard = (*deck)[0];
+    Card* drewCard = (*deck)[0];
     [*deck removeObjectAtIndex:0];
-    return drawenCard;
+    return drewCard;
 }
 
 - (NSString*)getSuit:(int)index{
@@ -134,7 +134,7 @@
     }
 }
 
-- (NSString*)getCardImageLink:(Card*)card{
++ (NSString*)getCardImageLink:(Card*)card{
     NSString* suitAdd = @"";
     if([card.suit isEqualToString:@"Hearts"]){
         suitAdd = @"H.png";

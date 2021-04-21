@@ -25,6 +25,14 @@
 
 - (int)getFaceValue:(NSString*)stringValue;
 
++ (NSMutableArray*)createDeck;
+
++ (NSMutableArray*)shuffleDeckRandom:(NSMutableArray*)deck;
+
++ (Card*)drawCard:(NSMutableArray**)deck;
+
++ (NSString*)getCardImageLink:(Card*)card;
+
 @end
 
 #endif /* Card_h */
