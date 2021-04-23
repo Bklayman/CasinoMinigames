@@ -53,7 +53,14 @@
 NSMutableArray* deck;
 NSMutableArray* playerCards;
 NSMutableArray* dealerCards;
+NSMutableArray* tableCards;
 NSMutableArray* turnOrder; //0 -> dealer, 1 -> player
+
+int playerBet;
+int dealerBet;
+int turnsTaken;
+int turnsBeforeDeal;
+bool readyToDrawTable;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -67,7 +74,99 @@ NSMutableArray* turnOrder; //0 -> dealer, 1 -> player
     }
 }
 
+- (void)playerTurn{
+    if(turnsTaken == 0 || dealerBet == 0){
+        [_callButton setTitle:@"Check" forState:UIControlStateNormal];
+    } else {
+        [_callButton setTitle:@"Call" forState:UIControlStateNormal];
+    }
+    turnsTaken++;
+}
+
 - (void)dealerTurn{
+    //TODO
+    turnsTaken++;
+    [self endTurn];
+}
+
+- (void)endTurn{
+    NSNumber* buffer = turnOrder[0];
+    turnOrder[0] = turnOrder[1];
+    turnOrder[1] = buffer;
+    turnsBeforeDeal--;
+    if(turnsBeforeDeal == 0){
+        turnsBeforeDeal = 2;
+        [self drawTableCard];
+    }
+    if([turnOrder[0] intValue] == 0){
+        [self dealerTurn];
+    } else {
+        [self playerTurn];
+    }
+}
+
+- (void)drawTableCard{
+    switch([tableCards count]){
+        case 0:
+            [tableCards addObject:[self drawCardWithCheck]];
+            [tableCards addObject:[self drawCardWithCheck]];
+            [tableCards addObject:[self drawCardWithCheck]];
+            _tableCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[0]]]];
+            _tableCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[1]]]];
+            _tableCard3.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[2]]]];
+            break;
+        case 3:
+            [tableCards addObject:[self drawCardWithCheck]];
+            _tableCard4.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[3]]]];
+            break;
+        case 4:
+            [tableCards addObject:[self drawCardWithCheck]];
+            _tableCard5.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[4]]]];
+            break;
+        case 5:
+            [self determineWinner];
+            break;
+    }
+}
+
+- (void)determineWinner{
+    for(int i = 0; i < [tableCards count]; i++){
+        [playerCards addObject:tableCards[i]];
+        [dealerCards addObject:tableCards[i]];
+    }
+    PointObject* playerPoints = [self getHandPoints:playerCards];
+    PointObject* dealerPoints = [self getHandPoints:dealerCards];
+    if([playerPoints getPoints] > [dealerPoints getPoints]){
+        //TODO Player Wins
+    } else if([playerPoints getPoints] < [dealerPoints getPoints]){
+        //TODO Dealer Wins
+    } else if([[playerPoints getKicker] compareValues:[dealerPoints getKicker]] < 0){
+        //TODO Player Wins
+    } else if([[playerPoints getKicker] compareValues:[dealerPoints getKicker]] > 0){
+        //TODO Dealer Wins
+    } else {
+        //TODO Tie
+    }
+}
+
+- (IBAction)callButtonPressed:(id)sender{
+    playerBet = dealerBet;
+    _playerBet.text = [NSString stringWithFormat:@"%d", playerBet];
+    [self endTurn];
+}
+
+- (IBAction)raiseButtonPressed:(id)sender{
+    NSString* raiseText = _raiseText.text;
+    _raiseText.text = @"";
+    if([raiseText intValue] > playerBet && [raiseText intValue] > dealerBet){ //TODO check if raiseText is an int
+        playerBet = [raiseText intValue];
+        _playerBet.text = [NSString stringWithFormat:@"%d", playerBet];
+        turnsBeforeDeal = 2;
+        [self endTurn];
+    }
+}
+
+- (IBAction)foldButtonPressed:(id)sender{
     //TODO
 }
 
@@ -75,15 +174,17 @@ NSMutableArray* turnOrder; //0 -> dealer, 1 -> player
     NSMutableArray* tempDeck = deck;
     _dealerCard1.image = [UIImage imageNamed:@"PNG/red_back.png"];
     _dealerCard2.image = [UIImage imageNamed:@"PNG/red_back.png"];
-    if([deck count] < 9){
-        deck = [Card shuffleDeckRandom: [Card createDeck]];
-    }
-    [playerCards addObject:[Card drawCard:&tempDeck]];
-    [playerCards addObject:[Card drawCard:&tempDeck]];
-    [dealerCards addObject:[Card drawCard:&tempDeck]];
-    [dealerCards addObject:[Card drawCard:&tempDeck]];
+    [playerCards addObject:[self drawCardWithCheck]];
+    [playerCards addObject:[self drawCardWithCheck]];
+    [dealerCards addObject:[self drawCardWithCheck]];
+    [dealerCards addObject:[self drawCardWithCheck]];
     _playerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[0]]]];
     _playerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[1]]]];
+    playerBet = 0;
+    dealerBet = 0;
+    turnsTaken = 0;
+    readyToDrawTable = false;
+    turnsBeforeDeal = 2;
     if(arc4random_uniform(2) == 0){
         [turnOrder addObject:[NSNumber numberWithInt:0]];
         [turnOrder addObject:[NSNumber numberWithInt:1]];
@@ -95,13 +196,25 @@ NSMutableArray* turnOrder; //0 -> dealer, 1 -> player
 }
 
 - (Card*)drawCardWithCheck{
-    Card* result;
     if([deck count] == 0){
-        //TODO
-    } else {
-        //TODO
+        deck = [Card shuffleDeckRandom: [Card createDeck]];
+        [self removeUsedCards:playerCards];
+        [self removeUsedCards:dealerCards];
+        [self removeUsedCards:tableCards];
     }
-    return result;
+    NSMutableArray* tempDeck = deck;
+    return [Card drawCard:&tempDeck];
+}
+
+- (void)removeUsedCards:(NSMutableArray*)hand{
+    for(int i = 0; i < [hand count]; i++){
+        for(int j = 0; j < [deck count]; j++){
+            if([[hand[i] getSuit] isEqualToString:[deck[j] getSuit]] && [[hand[i] getValue] isEqualToString:[deck[j] getValue]]){
+                [deck removeObjectAtIndex:j];
+                break;
+            }
+        }
+    }
 }
 
 - (Card*)getCard:(NSString*)value :(NSString*)suit{
