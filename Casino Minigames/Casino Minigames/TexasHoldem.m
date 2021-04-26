@@ -84,9 +84,148 @@ bool readyToDrawTable;
 }
 
 - (void)dealerTurn{
-    //TODO
+    NSMutableArray* curHand = [[NSMutableArray alloc]init];
+    for(int i = 0; i < [dealerCards count]; i++){
+        [curHand addObject:dealerCards[i]];
+    }
+    for(int i = 0; i < [tableCards count]; i++){
+        [curHand addObject:tableCards[i]];
+    }
+    PointObject* curPoints = [self getHandPoints:curHand];
+    int curIntPoints = [curPoints getPoints];
+    switch([curHand count]){
+        /*On the first round, check if garbage. If so, 1/3 chance raising, 2/3 chance calling.
+         If not garbage, 1/3 chance calling, 2/3 chance raising.*/
+        case 2:
+            if(curIntPoints < 13){
+                if(dealerBet < 10 && arc4random_uniform(3) < 2){
+                    [self dealerCall];
+                } else {
+                    [self dealerRaise:arc4random_uniform(5)];
+                }
+            } else {
+                if(dealerBet < 10 && arc4random_uniform(3) < 2){
+                    [self dealerRaise:arc4random_uniform(5)];
+                } else {
+                    [self dealerCall];
+                }
+            }
+            break;
+        /*On the second round, check if garbage. If so, 1/4 chance of folding, 3/4 chance of calling.
+         If one or two pair, 2/3 chance calling, 1/3 chance raising.
+         If three of a kind, straight, or full house, 1/2 chance calling, 1/2 chance raising.
+         If higher, 2/3 chance raising, 1/3 chance calling.
+         */
+        case 5:
+            if(curIntPoints < 13){
+                if(arc4random_uniform(4) < 3 && playerBet < 50){
+                    [self dealerCall];
+                } else {
+                    [self dealerFold];
+                }
+            } else if (curIntPoints < 222){
+                if(dealerBet > 70 || arc4random_uniform(3) < 2){
+                    [self dealerCall];
+                } else {
+                    [self dealerRaise:arc4random_uniform(10)];
+                }
+            } else if (curIntPoints < 419){
+                if(dealerBet > 80 || arc4random_uniform(2) < 1){
+                    [self dealerCall];
+                } else {
+                    [self dealerRaise:arc4random_uniform(10)];
+                }
+            } else {
+                if(dealerBet < 90 && arc4random_uniform(3) < 2){
+                    [self dealerRaise:arc4random_uniform(7)];
+                } else {
+                    [self dealerCall];
+                }
+            }
+            break;
+        /*On the third round, check if garbage or one pair. If so, 1/3 chance of folding, 2/3 chance of calling.
+         If two pair or three of a kind, 2/3 chance calling, 1/3 chance raising.
+         If straight, or full house, 1/2 chance calling, 1/2 chance raising.
+         If higher, 2/3 chance raising, 1/3 chance calling.
+        */
+        case 6:
+            if(curIntPoints < 26){
+                if(playerBet < 70 && arc4random_uniform(3) < 2){
+                    [self dealerCall];
+                } else {
+                    [self dealerFold];
+                }
+            } else if (curIntPoints < 235){
+                if(dealerBet > 100 || arc4random_uniform(3) < 2){
+                    [self dealerCall];
+                } else {
+                    [self dealerRaise:arc4random_uniform(10)];
+                }
+            } else if (curIntPoints < 419){
+                if(dealerBet > 120 || arc4random_uniform(2) < 1){
+                    [self dealerCall];
+                } else {
+                    [self dealerRaise:arc4random_uniform(10)];
+                }
+            } else {
+                if(dealerBet < 140 && arc4random_uniform(3) < 2){
+                    [self dealerRaise:arc4random_uniform(7)];
+                } else {
+                    [self dealerCall];
+                }
+            }
+            break;
+        /*On the fourth round, check if garbage, one pair. If so, 1/3 chance of folding, 2/3 chance of calling.
+         If two pair or three of a kind, 2/3 chance calling, 1/3 chance raising.
+         If straight, or full house, 1/2 chance calling, 1/2 chance raising.
+         If higher, 2/3 chance raising, 1/3 chance calling.
+         */
+        case 7:
+            if(curIntPoints < 26){
+                if(playerBet < 70 && arc4random_uniform(3) < 2){
+                    [self dealerCall];
+                } else {
+                    [self dealerFold];
+                }
+            } else if (curIntPoints < 235){
+                if(dealerBet > 120 || arc4random_uniform(3) < 2){
+                    [self dealerCall];
+                } else {
+                    [self dealerRaise:arc4random_uniform(10)];
+                }
+            } else if (curIntPoints < 419){
+                if(dealerBet > 150 || arc4random_uniform(2) < 1){
+                    [self dealerCall];
+                } else {
+                    [self dealerRaise:arc4random_uniform(10)];
+                }
+            } else {
+                if(arc4random_uniform(3) < 2){
+                    [self dealerRaise:arc4random_uniform(7)];
+                } else {
+                    [self dealerCall];
+                }
+            }
+            break;
+    }
     turnsTaken++;
     [self endTurn];
+}
+
+- (void)dealerRaise:(int)value{
+    dealerBet+= value;
+    _dealerBet.text = [NSString stringWithFormat:@"%d", dealerBet];
+    [self endTurn];
+}
+
+- (void)dealerCall{
+    dealerBet = playerBet;
+    _dealerBet.text = [NSString stringWithFormat:@"%d", dealerBet];
+    [self endTurn];
+}
+
+- (void)dealerFold{
+    //TODO
 }
 
 - (void)endTurn{
@@ -230,13 +369,13 @@ bool readyToDrawTable;
  0-12: Garbage. Points show the highest card in the hand. 0-3 should not be possible.
  13-25: One Pair. Points show which value the pair contains.
  26-221: Two Pair. 13 increments of 13. Each increment shows the higher value pair, value within the increment shows lower value pair. Half of the points should be impossible, as they reverse which is higher. Example: 101 = pairs of 10 and 2.
- 221-233: Three of a Kind. Points show which value the trio are.
- 233-245: Straight. Points show the highest card in the straight. 171-174 should not be possible.
- 246: Flush.
- 247-415: Full House: Same point distribution as two pair, except higher pair and lower pair are replaced by three set and two set respectively. Example: 300: 3 Queens + 2 Fives.
- 415-427: Four of a Kind. Points show which value the four cards are.
- 427-439: Straight Flush. Points show the high card in the flush. 331-334 should not be possible.
- 440: Royal Flush.
+ 222-234: Three of a Kind. Points show which value the trio are.
+ 235-247: Straight. Points show the highest card in the straight. 171-174 should not be possible.
+ 249: Flush.
+ 250-418: Full House: Same point distribution as two pair, except higher pair and lower pair are replaced by three set and two set respectively. Example: 300: 3 Queens + 2 Fives.
+ 419-431: Four of a Kind. Points show which value the four cards are.
+ 432-444: Straight Flush. Points show the high card in the flush. 331-334 should not be possible.
+ 445: Royal Flush.
  */
 
 - (PointObject*)getHandPoints:(NSMutableArray*)hand{
@@ -290,7 +429,7 @@ bool readyToDrawTable;
         }
         if(ordered == 5){
             int lastStraightCardValue = [self getValuePoints:hand[i + 1]];
-            return (233 + lastStraightCardValue - 2);
+            return (235 + lastStraightCardValue - 2);
         }
     }
     return -1;
@@ -336,9 +475,9 @@ bool readyToDrawTable;
         if([set2 count] == 2){
             int firstSet2CardValue = [self getValuePoints:set2[0]];
             int addValue = (firstSet1CardValue - 2) * 13 + firstSet2CardValue - 2;
-            return (247 + addValue);
+            return (250 + addValue);
         } else {
-            return (221 + firstSet1CardValue - 2);
+            return (222 + firstSet1CardValue - 2);
         }
     } else if([set1 count] == 2){
         if([set2 count] == 2){
@@ -406,12 +545,12 @@ bool readyToDrawTable;
         }
     }
     if(!straightFlush){
-        return 246;
+        return 249;
     } else if ([[finalCard getValue] isEqualToString:@"Ace"]){
-        return 440;
+        return 445;
     } else {
         int finalCardValue = [self getValuePoints:finalCard];
-        return (427 + finalCardValue - 2);
+        return (432 + finalCardValue - 2);
     }
 }
 
@@ -438,7 +577,7 @@ bool readyToDrawTable;
     [hand addObject:[self getCard:@"7" :@"Spades"]];
     result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 440 Ace Hearts");
+    NSLog(@"Actual: 445 Ace Hearts");
     //Straight Flush
     [hand removeAllObjects];
     [hand addObject:[self getCard:@"7" :@"Clubs"]];
@@ -450,7 +589,7 @@ bool readyToDrawTable;
     [hand addObject:[self getCard:@"4" :@"Hearts"]];
     result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 432 Jack Diamonds");
+    NSLog(@"Actual: 437 Jack Diamonds");
     //Four of a Kind
     [hand removeAllObjects];
     [hand addObject:[self getCard:@"9" :@"Clubs"]];
@@ -462,7 +601,7 @@ bool readyToDrawTable;
     [hand addObject:[self getCard:@"8" :@"Diamonds"]];
     result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 422 King Diamonds");
+    NSLog(@"Actual: 426 King Diamonds");
     //Full House
     [hand removeAllObjects];
     [hand addObject:[self getCard:@"Queen" :@"Spades"]];
@@ -474,7 +613,7 @@ bool readyToDrawTable;
     [hand addObject:[self getCard:@"10" :@"Diamonds"]];
     result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 380 Queen Spades/Hearts/Diamonds");
+    NSLog(@"Actual: 383 Queen Spades/Hearts/Diamonds");
     //Straight
     [hand removeAllObjects];
     [hand addObject:[self getCard:@"6" :@"Spades"]];
@@ -486,7 +625,7 @@ bool readyToDrawTable;
     [hand addObject:[self getCard:@"3" :@"Clubs"]];
     result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 241 Ace Spades");
+    NSLog(@"Actual: 243 Ace Spades");
     //Three of a Kind
     [hand removeAllObjects];
     [hand addObject:[self getCard:@"8" :@"Spades"]];
@@ -498,7 +637,7 @@ bool readyToDrawTable;
     [hand addObject:[self getCard:@"2" :@"Spades"]];
     result = [self getHandPoints:hand];
     NSLog(@"%d %@ %@", [result getPoints], [[result getKicker] getValue], [[result getKicker] getSuit]);
-    NSLog(@"Actual: 227 10 Diamonds");
+    NSLog(@"Actual: 228 10 Diamonds");
     //Two Pair
     [hand removeAllObjects];
     [hand addObject:[self getCard:@"Jack" :@"Diamonds"]];
