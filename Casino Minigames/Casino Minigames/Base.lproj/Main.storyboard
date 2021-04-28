@@ -43,43 +43,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="0dd-sB-yqd">
-                                <rect key="frame" x="115" y="704" width="85" height="118"/>
+                                <rect key="frame" x="115" y="649" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Dz-8w-MOL">
-                                <rect key="frame" x="105" y="263" width="85" height="118"/>
+                                <rect key="frame" x="105" y="235" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="IbX-JH-Myu">
-                                <rect key="frame" x="115" y="75" width="85" height="118"/>
+                                <rect key="frame" x="115" y="58" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="k0I-or-LeM">
-                                <rect key="frame" x="223" y="75" width="85" height="118"/>
+                                <rect key="frame" x="223" y="58" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-bx-3bX">
-                                <rect key="frame" x="223" y="263" width="85" height="118"/>
+                                <rect key="frame" x="223" y="235" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="rP8-B9-Ken">
-                                <rect key="frame" x="50" y="389" width="85" height="118"/>
+                                <rect key="frame" x="53" y="361" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="GRf-nr-D3y">
-                                <rect key="frame" x="165" y="389" width="85" height="118"/>
+                                <rect key="frame" x="165" y="361" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="kMH-0q-yhD">
-                                <rect key="frame" x="285" y="389" width="85" height="118"/>
+                                <rect key="frame" x="285" y="361" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="PNG/2C.png" translatesAutoresizingMaskIntoConstraints="NO" id="1DN-MT-CVU">
-                                <rect key="frame" x="223" y="704" width="85" height="118"/>
+                                <rect key="frame" x="223" y="649" width="85" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J45-xb-q9j">
-                                <rect key="frame" x="105" y="543" width="59" height="42"/>
+                                <rect key="frame" x="105" y="503" width="59" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Raise"/>
@@ -88,13 +88,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncj-e0-QUP">
-                                <rect key="frame" x="187" y="547" width="183" height="34"/>
+                                <rect key="frame" x="187" y="507" width="183" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWu-ov-GOy">
-                                <rect key="frame" x="184" y="639" width="47" height="42"/>
+                                <rect key="frame" x="187" y="599" width="47" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Fold"/>
@@ -103,40 +103,63 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bet: $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-bA-Tkj">
-                                <rect key="frame" x="154" y="830" width="69" height="33"/>
+                                <rect key="frame" x="155" y="789" width="69" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bet: $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6C-q0-BZN">
-                                <rect key="frame" x="169" y="201" width="69" height="33"/>
+                                <rect key="frame" x="173" y="184" width="69" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8L-7c-HV0">
-                                <rect key="frame" x="223" y="830" width="162" height="33"/>
+                                <rect key="frame" x="223" y="788" width="162" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXa-at-uzX">
-                                <rect key="frame" x="242" y="201" width="171" height="33"/>
+                                <rect key="frame" x="242" y="183" width="171" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCq-WQ-fc6">
-                                <rect key="frame" x="131" y="589" width="153" height="42"/>
+                                <rect key="frame" x="131" y="549" width="153" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Call"/>
                                 <connections>
                                     <action selector="callButtonPressed:" destination="S3A-SJ-CWT" eventType="touchUpInside" id="zNI-65-HP5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Funds: $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9I-Ij-zIc">
+                                <rect key="frame" x="20" y="830" width="162" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6i-g2-2pt">
+                                <rect key="frame" x="181" y="829" width="61" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vua-Al-Wqd">
+                                <rect key="frame" x="257" y="825" width="113" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Play Again"/>
+                                <connections>
+                                    <action selector="playAgainPressed:" destination="S3A-SJ-CWT" eventType="touchUpInside" id="wEZ-u5-Q27"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -145,10 +168,12 @@
                     </view>
                     <connections>
                         <outlet property="callButton" destination="eCq-WQ-fc6" id="4f9-5v-pT4"/>
+                        <outlet property="currentFunds" destination="H6i-g2-2pt" id="5ZU-CR-tA2"/>
                         <outlet property="dealerBet" destination="rXa-at-uzX" id="X2O-EQ-VhJ"/>
                         <outlet property="dealerCard1" destination="IbX-JH-Myu" id="uXz-Hk-a6t"/>
                         <outlet property="dealerCard2" destination="k0I-or-LeM" id="aSA-rx-NFR"/>
                         <outlet property="foldButton" destination="fWu-ov-GOy" id="dLq-Dc-ugW"/>
+                        <outlet property="playAgainButton" destination="Vua-Al-Wqd" id="rhp-yY-iJW"/>
                         <outlet property="playerBet" destination="Y8L-7c-HV0" id="nsz-Tq-oRX"/>
                         <outlet property="playerCard1" destination="0dd-sB-yqd" id="DW0-VR-joI"/>
                         <outlet property="playerCard2" destination="1DN-MT-CVU" id="rXi-oy-Cfz"/>

@@ -18,11 +18,13 @@
 @property (nonatomic, strong) IBOutlet UIButton* raiseButton;
 @property (nonatomic, strong) IBOutlet UIButton* callButton;
 @property (nonatomic, strong) IBOutlet UIButton* foldButton;
+@property (nonatomic, strong) IBOutlet UIButton* playAgainButton;
 
 @property (nonatomic, strong) IBOutlet UITextField* raiseText;
 
 @property (nonatomic, strong) IBOutlet UILabel* playerBet;
 @property (nonatomic, strong) IBOutlet UILabel* dealerBet;
+@property (nonatomic, strong) IBOutlet UILabel* currentFunds;
 
 @end
 

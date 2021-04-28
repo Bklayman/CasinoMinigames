@@ -77,15 +77,6 @@
     return deck;
 }
 
-+ (Card*)drawCard:(NSMutableArray**)deck{
-    if([*deck count] == 0){
-        *deck = [Card shuffleDeckRandom:[Card createDeck]];
-    }
-    Card* drewCard = (*deck)[0];
-    [*deck removeObjectAtIndex:0];
-    return drewCard;
-}
-
 - (NSString*)getSuit:(int)index{
     switch(index){
         case 0:

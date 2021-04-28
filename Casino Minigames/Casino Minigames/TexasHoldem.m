@@ -61,6 +61,7 @@ int dealerBet;
 int turnsTaken;
 int turnsBeforeDeal;
 bool readyToDrawTable;
+int currentFunds;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -68,10 +69,13 @@ bool readyToDrawTable;
     playerCards = [[NSMutableArray alloc] init];
     dealerCards = [[NSMutableArray alloc] init];
     turnOrder = [[NSMutableArray alloc] init];
+    tableCards = [[NSMutableArray alloc] init];
     [self startRound];
     if([turnOrder[0] intValue] == 0){
         [self dealerTurn];
     }
+    currentFunds = 0; //TODO Set Current Funds
+    _playAgainButton.hidden = TRUE;
 }
 
 - (void)playerTurn{
@@ -213,40 +217,48 @@ bool readyToDrawTable;
 }
 
 - (void)dealerRaise:(int)value{
-    dealerBet+= value;
+    dealerBet = MAX(playerBet, dealerBet) + value;
     _dealerBet.text = [NSString stringWithFormat:@"%d", dealerBet];
-    [self endTurn];
 }
 
 - (void)dealerCall{
     dealerBet = playerBet;
     _dealerBet.text = [NSString stringWithFormat:@"%d", dealerBet];
-    [self endTurn];
 }
 
 - (void)dealerFold{
-    //TODO
+    [turnOrder removeObjectAtIndex:0];
 }
 
 - (void)endTurn{
-    NSNumber* buffer = turnOrder[0];
-    turnOrder[0] = turnOrder[1];
-    turnOrder[1] = buffer;
-    turnsBeforeDeal--;
-    if(turnsBeforeDeal == 0){
-        turnsBeforeDeal = 2;
-        [self drawTableCard];
-    }
-    if([turnOrder[0] intValue] == 0){
-        [self dealerTurn];
+    if([turnOrder count] == 2){
+        NSNumber* buffer = turnOrder[0];
+        turnOrder[0] = turnOrder[1];
+        turnOrder[1] = buffer;
+        turnsBeforeDeal--;
+        if(turnsBeforeDeal == 0){
+            turnsBeforeDeal = (int)[turnOrder count];
+            [self drawTableCard];
+        }
+        if([turnOrder[0] intValue] == 0){
+            [self dealerTurn];
+        } else {
+            [self playerTurn];
+        }
     } else {
-        [self playerTurn];
+        while([tableCards count] != 5){
+            [self drawTableCard];
+        }
+        [self determineWinner];
     }
 }
 
 - (void)drawTableCard{
     switch([tableCards count]){
         case 0:
+            _tableCard1.hidden = FALSE;
+            _tableCard2.hidden = FALSE;
+            _tableCard3.hidden = FALSE;
             [tableCards addObject:[self drawCardWithCheck]];
             [tableCards addObject:[self drawCardWithCheck]];
             [tableCards addObject:[self drawCardWithCheck]];
@@ -255,10 +267,12 @@ bool readyToDrawTable;
             _tableCard3.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[2]]]];
             break;
         case 3:
+            _tableCard4.hidden = FALSE;
             [tableCards addObject:[self drawCardWithCheck]];
             _tableCard4.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[3]]]];
             break;
         case 4:
+            _tableCard5.hidden = FALSE;
             [tableCards addObject:[self drawCardWithCheck]];
             _tableCard5.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[4]]]];
             break;
@@ -269,23 +283,30 @@ bool readyToDrawTable;
 }
 
 - (void)determineWinner{
-    for(int i = 0; i < [tableCards count]; i++){
-        [playerCards addObject:tableCards[i]];
-        [dealerCards addObject:tableCards[i]];
+    if([turnOrder count] == 2){
+        for(int i = 0; i < [tableCards count]; i++){
+            [playerCards addObject:tableCards[i]];
+            [dealerCards addObject:tableCards[i]];
+        }
+        PointObject* playerPoints = [self getHandPoints:playerCards];
+        PointObject* dealerPoints = [self getHandPoints:dealerCards];
+        if([playerPoints getPoints] > [dealerPoints getPoints] || ([playerPoints getPoints] > [dealerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] < 0)){
+            currentFunds+= (playerBet + dealerBet);
+        } else {
+            currentFunds+= ((playerBet + dealerBet) / 2);
+        }
+    } else { //For any folds
+        if([turnOrder[0] intValue] == 1){
+            currentFunds+= playerBet;
+        }
     }
-    PointObject* playerPoints = [self getHandPoints:playerCards];
-    PointObject* dealerPoints = [self getHandPoints:dealerCards];
-    if([playerPoints getPoints] > [dealerPoints getPoints]){
-        //TODO Player Wins
-    } else if([playerPoints getPoints] < [dealerPoints getPoints]){
-        //TODO Dealer Wins
-    } else if([[playerPoints getKicker] compareValues:[dealerPoints getKicker]] < 0){
-        //TODO Player Wins
-    } else if([[playerPoints getKicker] compareValues:[dealerPoints getKicker]] > 0){
-        //TODO Dealer Wins
-    } else {
-        //TODO Tie
-    }
+    _currentFunds.text = [NSString stringWithFormat:@"%d", currentFunds];
+    _playAgainButton.hidden = FALSE;
+}
+
+- (IBAction)playAgainPressed:(id)sender{
+    _playAgainButton.hidden = TRUE;
+    [self startRound];
 }
 
 - (IBAction)callButtonPressed:(id)sender{
@@ -297,16 +318,23 @@ bool readyToDrawTable;
 - (IBAction)raiseButtonPressed:(id)sender{
     NSString* raiseText = _raiseText.text;
     _raiseText.text = @"";
-    if([raiseText intValue] > playerBet && [raiseText intValue] > dealerBet){ //TODO check if raiseText is an int
-        playerBet = [raiseText intValue];
+    NSError* error = NULL;
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]+" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:raiseText options:0 range:NSMakeRange(0, [raiseText length])];
+    if(numberOfMatches == 0){
+        return; //raiseText is not a valid integer
+    }
+    if([raiseText intValue] + playerBet > dealerBet){
+        playerBet += [raiseText intValue];
         _playerBet.text = [NSString stringWithFormat:@"%d", playerBet];
-        turnsBeforeDeal = 2;
+        turnsBeforeDeal = (int)[turnOrder count];
         [self endTurn];
     }
 }
 
 - (IBAction)foldButtonPressed:(id)sender{
-    //TODO
+    [turnOrder removeObjectAtIndex:0];
+    [self endTurn];
 }
 
 - (void)startRound{
@@ -319,11 +347,16 @@ bool readyToDrawTable;
     [dealerCards addObject:[self drawCardWithCheck]];
     _playerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[0]]]];
     _playerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[1]]]];
+    _tableCard1.hidden = TRUE;
+    _tableCard2.hidden = TRUE;
+    _tableCard3.hidden = TRUE;
+    _tableCard4.hidden = TRUE;
+    _tableCard5.hidden = TRUE;
     playerBet = 0;
     dealerBet = 0;
     turnsTaken = 0;
     readyToDrawTable = false;
-    turnsBeforeDeal = 2;
+    turnsBeforeDeal = (int)[turnOrder count];
     if(arc4random_uniform(2) == 0){
         [turnOrder addObject:[NSNumber numberWithInt:0]];
         [turnOrder addObject:[NSNumber numberWithInt:1]];
@@ -341,8 +374,9 @@ bool readyToDrawTable;
         [self removeUsedCards:dealerCards];
         [self removeUsedCards:tableCards];
     }
-    NSMutableArray* tempDeck = deck;
-    return [Card drawCard:&tempDeck];
+    Card* result = deck[0];
+    [deck removeObjectAtIndex:0];
+    return result;
 }
 
 - (void)removeUsedCards:(NSMutableArray*)hand{
