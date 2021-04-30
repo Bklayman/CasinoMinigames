@@ -61,6 +61,7 @@ int dealerBet;
 int turnsTaken;
 int turnsBeforeDeal;
 bool readyToDrawTable;
+bool gameInProgress;
 int currentFunds;
 
 - (void)viewDidLoad{
@@ -219,6 +220,7 @@ int currentFunds;
 - (void)dealerRaise:(int)value{
     dealerBet = MAX(playerBet, dealerBet) + value;
     _dealerBet.text = [NSString stringWithFormat:@"%d", dealerBet];
+    turnsBeforeDeal = (int)[turnOrder count];
 }
 
 - (void)dealerCall{
@@ -282,7 +284,9 @@ int currentFunds;
     }
 }
 
+//TODO Some winner calcs give errors
 - (void)determineWinner{
+    gameInProgress = FALSE;
     _dealerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:dealerCards[0]]]];
     _dealerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:dealerCards[1]]]];
     if([turnOrder count] == 2){
@@ -294,12 +298,12 @@ int currentFunds;
         PointObject* dealerPoints = [self getHandPoints:dealerCards];
         if([playerPoints getPoints] > [dealerPoints getPoints] || ([playerPoints getPoints] > [dealerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] < 0)){
             currentFunds+= (playerBet + dealerBet);
-        } else {
+        } else if([dealerPoints getPoints] == [playerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] == 0){
             currentFunds+= ((playerBet + dealerBet) / 2);
         }
     } else { //For any folds
         if([turnOrder[0] intValue] == 1){
-            currentFunds+= playerBet;
+            currentFunds+= playerBet + dealerBet;
         }
     }
     _currentFunds.text = [NSString stringWithFormat:@"%d", currentFunds];
@@ -312,12 +316,18 @@ int currentFunds;
 }
 
 - (IBAction)callButtonPressed:(id)sender{
+    if(!gameInProgress){
+        return;
+    }
     playerBet = dealerBet;
     _playerBet.text = [NSString stringWithFormat:@"%d", playerBet];
     [self endTurn];
 }
 
 - (IBAction)raiseButtonPressed:(id)sender{
+    if(!gameInProgress){
+        return;
+    }
     NSString* raiseText = _raiseText.text;
     _raiseText.text = @"";
     NSError* error = NULL;
@@ -335,11 +345,15 @@ int currentFunds;
 }
 
 - (IBAction)foldButtonPressed:(id)sender{
+    if(!gameInProgress){
+        return;
+    }
     [turnOrder removeObjectAtIndex:0];
     [self endTurn];
 }
 
 - (void)startRound{
+    gameInProgress = TRUE;
     NSMutableArray* tempDeck = deck;
     [playerCards removeAllObjects];
     [dealerCards removeAllObjects];
@@ -358,7 +372,9 @@ int currentFunds;
     _tableCard4.hidden = TRUE;
     _tableCard5.hidden = TRUE;
     playerBet = 0;
+    _playerBet.text = [NSString stringWithFormat:@"%d", playerBet];
     dealerBet = 0;
+    _dealerBet.text = [NSString stringWithFormat:@"%d", dealerBet];
     turnsTaken = 0;
     readyToDrawTable = false;
     turnsBeforeDeal = (int)[turnOrder count];
