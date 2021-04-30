@@ -283,6 +283,8 @@ int currentFunds;
 }
 
 - (void)determineWinner{
+    _dealerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:dealerCards[0]]]];
+    _dealerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:dealerCards[1]]]];
     if([turnOrder count] == 2){
         for(int i = 0; i < [tableCards count]; i++){
             [playerCards addObject:tableCards[i]];
@@ -339,6 +341,9 @@ int currentFunds;
 
 - (void)startRound{
     NSMutableArray* tempDeck = deck;
+    [playerCards removeAllObjects];
+    [dealerCards removeAllObjects];
+    [tableCards removeAllObjects];
     _dealerCard1.image = [UIImage imageNamed:@"PNG/red_back.png"];
     _dealerCard2.image = [UIImage imageNamed:@"PNG/red_back.png"];
     [playerCards addObject:[self drawCardWithCheck]];

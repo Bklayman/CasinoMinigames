@@ -18,6 +18,7 @@
 		4F962E7B2624849500D98DE0 /* TexasHoldem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F962E7A2624849500D98DE0 /* TexasHoldem.m */; };
 		4F962E81262485D300D98DE0 /* PNG in Resources */ = {isa = PBXBuildFile; fileRef = 4F962E80262485D300D98DE0 /* PNG */; };
 		4F962E8726248CAA00D98DE0 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F962E8626248CAA00D98DE0 /* Card.m */; };
+		4FC0E68F263C407E000DC646 /* Blackjack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E68E263C407E000DC646 /* Blackjack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		4F962E80262485D300D98DE0 /* PNG */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PNG; path = ../../../../../../../../Downloads/PNG; sourceTree = "<group>"; };
 		4F962E8526248AC800D98DE0 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		4F962E8626248CAA00D98DE0 /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		4FC0E68E263C407E000DC646 /* Blackjack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Blackjack.m; sourceTree = "<group>"; };
+		4FC0E693263C4086000DC646 /* Blackjack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blackjack.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,9 +114,11 @@
 				4F18BAF726209D9B0017A1F8 /* AppDelegate.swift */,
 				4F18BAF926209D9B0017A1F8 /* SceneDelegate.swift */,
 				4F18BAFB26209D9B0017A1F8 /* ViewController.swift */,
-				4F962E7A2624849500D98DE0 /* TexasHoldem.m */,
 				4F962E8626248CAA00D98DE0 /* Card.m */,
 				4F962E8526248AC800D98DE0 /* Card.h */,
+				4FC0E68E263C407E000DC646 /* Blackjack.m */,
+				4FC0E693263C4086000DC646 /* Blackjack.h */,
+				4F962E7A2624849500D98DE0 /* TexasHoldem.m */,
 				4F962E7F262484A600D98DE0 /* TexasHoldem.h */,
 				4F18BAFD26209D9B0017A1F8 /* Main.storyboard */,
 				4F18BB0026209D9C0017A1F8 /* Assets.xcassets */,
@@ -277,6 +282,7 @@
 			files = (
 				4F962E8726248CAA00D98DE0 /* Card.m in Sources */,
 				4F18BAFC26209D9B0017A1F8 /* ViewController.swift in Sources */,
+				4FC0E68F263C407E000DC646 /* Blackjack.m in Sources */,
 				4F18BAF826209D9B0017A1F8 /* AppDelegate.swift in Sources */,
 				4F962E7B2624849500D98DE0 /* TexasHoldem.m in Sources */,
 				4F18BAFA26209D9B0017A1F8 /* SceneDelegate.swift in Sources */,
