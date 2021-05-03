@@ -16,7 +16,6 @@
 		4F18BB0F26209D9D0017A1F8 /* Casino_MinigamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18BB0E26209D9D0017A1F8 /* Casino_MinigamesTests.swift */; };
 		4F18BB1A26209D9D0017A1F8 /* Casino_MinigamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18BB1926209D9D0017A1F8 /* Casino_MinigamesUITests.swift */; };
 		4F962E7B2624849500D98DE0 /* TexasHoldem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F962E7A2624849500D98DE0 /* TexasHoldem.m */; };
-		4F962E81262485D300D98DE0 /* PNG in Resources */ = {isa = PBXBuildFile; fileRef = 4F962E80262485D300D98DE0 /* PNG */; };
 		4F962E8726248CAA00D98DE0 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F962E8626248CAA00D98DE0 /* Card.m */; };
 		4FC0E68F263C407E000DC646 /* Blackjack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E68E263C407E000DC646 /* Blackjack.m */; };
 /* End PBXBuildFile section */
@@ -56,7 +55,6 @@
 		4F962E792624849400D98DE0 /* Casino Minigames-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Casino Minigames-Bridging-Header.h"; sourceTree = "<group>"; };
 		4F962E7A2624849500D98DE0 /* TexasHoldem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TexasHoldem.m; sourceTree = "<group>"; };
 		4F962E7F262484A600D98DE0 /* TexasHoldem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexasHoldem.h; sourceTree = "<group>"; };
-		4F962E80262485D300D98DE0 /* PNG */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PNG; path = ../../../../../../../../Downloads/PNG; sourceTree = "<group>"; };
 		4F962E8526248AC800D98DE0 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		4F962E8626248CAA00D98DE0 /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		4FC0E68E263C407E000DC646 /* Blackjack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Blackjack.m; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				4F962E7F262484A600D98DE0 /* TexasHoldem.h */,
 				4F18BAFD26209D9B0017A1F8 /* Main.storyboard */,
 				4F18BB0026209D9C0017A1F8 /* Assets.xcassets */,
-				4F962E80262485D300D98DE0 /* PNG */,
 				4F18BB0226209D9C0017A1F8 /* LaunchScreen.storyboard */,
 				4F18BB0526209D9C0017A1F8 /* Info.plist */,
 				4F962E792624849400D98DE0 /* Casino Minigames-Bridging-Header.h */,
@@ -252,7 +249,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F962E81262485D300D98DE0 /* PNG in Resources */,
 				4F18BB0426209D9C0017A1F8 /* LaunchScreen.storyboard in Resources */,
 				4F18BB0126209D9C0017A1F8 /* Assets.xcassets in Resources */,
 				4F18BAFF26209D9B0017A1F8 /* Main.storyboard in Resources */,
