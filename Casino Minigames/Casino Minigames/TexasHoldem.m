@@ -264,19 +264,19 @@ int currentFunds;
             [tableCards addObject:[self drawCardWithCheck]];
             [tableCards addObject:[self drawCardWithCheck]];
             [tableCards addObject:[self drawCardWithCheck]];
-            _tableCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[0]]]];
-            _tableCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[1]]]];
-            _tableCard3.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[2]]]];
+            _tableCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:tableCards[0]]]];
+            _tableCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:tableCards[1]]]];
+            _tableCard3.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:tableCards[2]]]];
             break;
         case 3:
             _tableCard4.hidden = FALSE;
             [tableCards addObject:[self drawCardWithCheck]];
-            _tableCard4.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[3]]]];
+            _tableCard4.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:tableCards[3]]]];
             break;
         case 4:
             _tableCard5.hidden = FALSE;
             [tableCards addObject:[self drawCardWithCheck]];
-            _tableCard5.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:tableCards[4]]]];
+            _tableCard5.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:tableCards[4]]]];
             break;
         case 5:
             [self determineWinner];
@@ -287,8 +287,8 @@ int currentFunds;
 //TODO Some winner calcs give errors
 - (void)determineWinner{
     gameInProgress = FALSE;
-    _dealerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:dealerCards[0]]]];
-    _dealerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:dealerCards[1]]]];
+    _dealerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:dealerCards[0]]]];
+    _dealerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:dealerCards[1]]]];
     if([turnOrder count] == 2){
         for(int i = 0; i < [tableCards count]; i++){
             [playerCards addObject:tableCards[i]];
@@ -358,14 +358,14 @@ int currentFunds;
     [playerCards removeAllObjects];
     [dealerCards removeAllObjects];
     [tableCards removeAllObjects];
-    _dealerCard1.image = [UIImage imageNamed:@"PNG/red_back.png"];
-    _dealerCard2.image = [UIImage imageNamed:@"PNG/red_back.png"];
+    _dealerCard1.image = [UIImage imageNamed:@"red_back.png"];
+    _dealerCard2.image = [UIImage imageNamed:@"red_back.png"];
     [playerCards addObject:[self drawCardWithCheck]];
     [playerCards addObject:[self drawCardWithCheck]];
     [dealerCards addObject:[self drawCardWithCheck]];
     [dealerCards addObject:[self drawCardWithCheck]];
-    _playerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[0]]]];
-    _playerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", @"PNG/", [Card getCardImageLink:playerCards[1]]]];
+    _playerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:playerCards[0]]]];
+    _playerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:playerCards[1]]]];
     _tableCard1.hidden = TRUE;
     _tableCard2.hidden = TRUE;
     _tableCard3.hidden = TRUE;
