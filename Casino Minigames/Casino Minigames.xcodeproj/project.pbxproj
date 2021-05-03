@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		252E37692640493D002F48C5 /* horseRaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252E37682640493D002F48C5 /* horseRaceController.swift */; };
+		252E376B2640495B002F48C5 /* horseRaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252E376A2640495B002F48C5 /* horseRaceView.swift */; };
+		252E376D26404A41002F48C5 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 252E376C26404A41002F48C5 /* horse.png */; };
 		49C6972C26403C53005078C5 /* Slots.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C6972B26403C52005078C5 /* Slots.storyboard */; };
 		49C6972E26403C60005078C5 /* SlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C6972D26403C60005078C5 /* SlotsViewController.swift */; };
 		49C6973526403C6E005078C5 /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C6972F26403C6D005078C5 /* image3.png */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		252E37682640493D002F48C5 /* horseRaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = horseRaceController.swift; sourceTree = "<group>"; };
+		252E376A2640495B002F48C5 /* horseRaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = horseRaceView.swift; sourceTree = "<group>"; };
+		252E376C26404A41002F48C5 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = horse.png; path = ../../../../Downloads/horse.png; sourceTree = "<group>"; };
 		49C6972B26403C52005078C5 /* Slots.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Slots.storyboard; sourceTree = "<group>"; };
 		49C6972D26403C60005078C5 /* SlotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsViewController.swift; sourceTree = "<group>"; };
 		49C6972F26403C6D005078C5 /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
@@ -134,6 +140,8 @@
 				4FC0E693263C4086000DC646 /* Blackjack.h */,
 				4F962E7A2624849500D98DE0 /* TexasHoldem.m */,
 				4F962E7F262484A600D98DE0 /* TexasHoldem.h */,
+				252E37682640493D002F48C5 /* horseRaceController.swift */,
+				252E376A2640495B002F48C5 /* horseRaceView.swift */,
 				4F18BAFD26209D9B0017A1F8 /* Main.storyboard */,
 				49C6972D26403C60005078C5 /* SlotsViewController.swift */,
 				49C6972B26403C52005078C5 /* Slots.storyboard */,
@@ -143,6 +151,7 @@
 				49C6973226403C6D005078C5 /* image4.png */,
 				49C6973426403C6E005078C5 /* image5.png */,
 				49C6973326403C6E005078C5 /* image6.png */,
+				252E376C26404A41002F48C5 /* horse.png */,
 				4F18BB0026209D9C0017A1F8 /* Assets.xcassets */,
 				4F18BB0226209D9C0017A1F8 /* LaunchScreen.storyboard */,
 				4F18BB0526209D9C0017A1F8 /* Info.plist */,
@@ -279,6 +288,7 @@
 				49C6973526403C6E005078C5 /* image3.png in Resources */,
 				4F18BB0426209D9C0017A1F8 /* LaunchScreen.storyboard in Resources */,
 				49C6973626403C6E005078C5 /* image1.png in Resources */,
+				252E376D26404A41002F48C5 /* horse.png in Resources */,
 				49C6973826403C6E005078C5 /* image4.png in Resources */,
 				4F18BB0126209D9C0017A1F8 /* Assets.xcassets in Resources */,
 				4F18BAFF26209D9B0017A1F8 /* Main.storyboard in Resources */,
@@ -308,9 +318,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F962E8726248CAA00D98DE0 /* Card.m in Sources */,
+				252E376B2640495B002F48C5 /* horseRaceView.swift in Sources */,
 				4F18BAFC26209D9B0017A1F8 /* ViewController.swift in Sources */,
 				4FC0E68F263C407E000DC646 /* Blackjack.m in Sources */,
 				4F18BAF826209D9B0017A1F8 /* AppDelegate.swift in Sources */,
+				252E37692640493D002F48C5 /* horseRaceController.swift in Sources */,
 				4F962E7B2624849500D98DE0 /* TexasHoldem.m in Sources */,
 				49C6972E26403C60005078C5 /* SlotsViewController.swift in Sources */,
 				4F18BAFA26209D9B0017A1F8 /* SceneDelegate.swift in Sources */,
@@ -493,6 +505,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H28LDJXC2A;
 				INFOPLIST_FILE = "Casino Minigames/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,6 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H28LDJXC2A;
 				INFOPLIST_FILE = "Casino Minigames/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
