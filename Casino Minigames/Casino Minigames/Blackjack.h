@@ -1,5 +1,5 @@
-#ifndef TexasHoldem_h
-#define TexasHoldem_h
+#ifndef Blackjack_h
+#define Blackjack_h
 
 #import <UIKit/UIKit.h>
 

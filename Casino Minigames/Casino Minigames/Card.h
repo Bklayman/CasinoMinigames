@@ -29,8 +29,6 @@
 
 + (NSMutableArray*)shuffleDeckRandom:(NSMutableArray*)deck;
 
-+ (Card*)drawCard:(NSMutableArray**)deck;
-
 + (NSString*)getCardImageLink:(Card*)card;
 
 @end

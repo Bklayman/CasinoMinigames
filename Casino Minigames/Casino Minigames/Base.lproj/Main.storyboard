@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -109,19 +109,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Stand"/>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="tRU-j0-Iqd">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="tRU-j0-Iqd">
                                 <rect key="frame" x="20" y="635" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="EFi-b9-C3F">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="EFi-b9-C3F">
                                 <rect key="frame" x="125" y="635" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="Gd2-WW-SUb">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="Gd2-WW-SUb">
                                 <rect key="frame" x="222" y="635" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="WzO-H4-Zrl">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="WzO-H4-Zrl">
                                 <rect key="frame" x="317" y="635" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -137,23 +137,23 @@
                                 <rect key="frame" x="125" y="54" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="axb-r0-CNn">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="axb-r0-CNn">
                                 <rect key="frame" x="317" y="54" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="JU0-VF-n2j">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="JU0-VF-n2j">
                                 <rect key="frame" x="20" y="229" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="QkL-5T-YKs">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="QkL-5T-YKs">
                                 <rect key="frame" x="125" y="229" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="yoC-U1-iAh">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="yoC-U1-iAh">
                                 <rect key="frame" x="222" y="229" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="jwg-aQ-vnb">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="jwg-aQ-vnb">
                                 <rect key="frame" x="317" y="229" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -161,15 +161,15 @@
                                 <rect key="frame" x="125" y="483" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="EgM-kj-oys">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="EgM-kj-oys">
                                 <rect key="frame" x="222" y="483" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="Qc1-8i-vtx">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="Qc1-8i-vtx">
                                 <rect key="frame" x="317" y="483" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="5Za-4V-7Dh">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="5Za-4V-7Dh">
                                 <rect key="frame" x="222" y="54" width="77" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
