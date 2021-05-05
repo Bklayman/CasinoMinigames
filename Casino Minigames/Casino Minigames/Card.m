@@ -187,4 +187,8 @@
     return -1;
 }
 
+- (void)print{
+    NSLog([NSString stringWithFormat:@"%@%@%@", value, @" of ", suit]);
+}
+
 @end

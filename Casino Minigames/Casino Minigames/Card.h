@@ -31,6 +31,8 @@
 
 + (NSString*)getCardImageLink:(Card*)card;
 
+- (void)print;
+
 @end
 
 #endif /* Card_h */
