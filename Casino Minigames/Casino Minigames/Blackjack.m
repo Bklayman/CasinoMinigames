@@ -10,6 +10,7 @@
 NSMutableArray* playerCardsBlackjack;
 NSMutableArray* dealerCardsBlackjack;
 NSMutableArray* deckBlackjack;
+bool roundInProgress;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -32,14 +33,51 @@ NSMutableArray* deckBlackjack;
     [self setCardImage:1 :playerCardsBlackjack[1]];
     _dealerCard1.image = [UIImage imageNamed:@"red_back"];
     _dealerCard2.image = [UIImage imageNamed:@"red_back"];
+    roundInProgress = TRUE;
 }
 
 - (IBAction)hitButtonPressed:(id)sender{
-    //TODO
+    if(!roundInProgress){
+        return;
+    }
+    [playerCardsBlackjack addObject:[self drawCardWithCheck]];
+    [self setCardImage:((int)[playerCardsBlackjack count] - 1) :playerCardsBlackjack[[playerCardsBlackjack count] - 1]];
+    [self getPlayerCardImage:(int)[playerCardsBlackjack count] - 1].hidden = FALSE;
+    int points = [self getHandValue:playerCardsBlackjack];
+    if(points > 21 || points < 0){
+        [self dealerTurn];
+    }
 }
 
 - (IBAction)standButtonPressed:(id)sender{
-    //TODO
+    if(!roundInProgress){
+        return;
+    }
+    [self dealerTurn];
+}
+
+- (void)dealerTurn{
+    [self setCardImage:8 :dealerCardsBlackjack[0]];
+    [self setCardImage:9 :dealerCardsBlackjack[1]];
+    while([self getHandValue:dealerCardsBlackjack] < 16){
+        [self dealerHit];
+    }
+    [self determineWinner];
+}
+
+- (void)dealerHit{
+    [dealerCardsBlackjack addObject:[self drawCardWithCheck]];
+    [self setCardImage:((int)[dealerCardsBlackjack count] + 7) :dealerCardsBlackjack[(int)[dealerCardsBlackjack count] - 1]];
+    [self getDealerCardImage:(int)[dealerCardsBlackjack count] - 1].hidden = FALSE;
+}
+
+-(void)determineWinner{
+    roundInProgress = FALSE;
+    int playerPoints = [self getHandValue:playerCardsBlackjack];
+    int dealerPoints = [self getHandValue:dealerCardsBlackjack];
+    if(playerPoints < 22 && playerPoints > dealerPoints){
+        //TODO
+    }
 }
 
 - (NSMutableArray*)handValueHelper:(int)curValue :(NSMutableArray*)hand :(int)curIndex{//Returns array of point totals
@@ -58,10 +96,11 @@ NSMutableArray* deckBlackjack;
             }
             break;
         } else {
-            curValue+= [hand[curValue] getValueInt:curValueName];
+            curValue+= [hand[curIndex] getValueInt:curValueName];
         }
         curIndex++;
     }
+    [result addObject:[NSNumber numberWithInt:curValue]];
     for(int i = 0; i < [result count]; i++){
         if([result[i] intValue] > 21){
             [result removeObjectAtIndex:i];

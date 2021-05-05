@@ -289,6 +289,7 @@ int currentFunds;
     gameInProgress = FALSE;
     _dealerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:dealerCards[0]]]];
     _dealerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:dealerCards[1]]]];
+    currentFunds-= playerBet;
     if([turnOrder count] == 2){
         for(int i = 0; i < [tableCards count]; i++){
             [playerCards addObject:tableCards[i]];
@@ -296,6 +297,7 @@ int currentFunds;
         }
         PointObject* playerPoints = [self getHandPoints:playerCards];
         PointObject* dealerPoints = [self getHandPoints:dealerCards];
+        NSLog(@"%@%d%@%d", @"Player Points: ", [playerPoints getPoints], @" Dealer Points: ", [dealerPoints getPoints]);
         if([playerPoints getPoints] > [dealerPoints getPoints] || ([playerPoints getPoints] > [dealerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] < 0)){
             currentFunds+= (playerBet + dealerBet);
         } else if([dealerPoints getPoints] == [playerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] == 0){
@@ -358,6 +360,7 @@ int currentFunds;
     [playerCards removeAllObjects];
     [dealerCards removeAllObjects];
     [tableCards removeAllObjects];
+    [turnOrder removeAllObjects];
     _dealerCard1.image = [UIImage imageNamed:@"red_back.png"];
     _dealerCard2.image = [UIImage imageNamed:@"red_back.png"];
     [playerCards addObject:[self drawCardWithCheck]];
@@ -377,7 +380,6 @@ int currentFunds;
     _dealerBet.text = [NSString stringWithFormat:@"%d", dealerBet];
     turnsTaken = 0;
     readyToDrawTable = false;
-    turnsBeforeDeal = (int)[turnOrder count];
     if(arc4random_uniform(2) == 0){
         [turnOrder addObject:[NSNumber numberWithInt:0]];
         [turnOrder addObject:[NSNumber numberWithInt:1]];
@@ -385,6 +387,7 @@ int currentFunds;
         [turnOrder addObject:[NSNumber numberWithInt:1]];
         [turnOrder addObject:[NSNumber numberWithInt:0]];
     }
+    turnsBeforeDeal = (int)[turnOrder count];
     deck = tempDeck;
 }
 

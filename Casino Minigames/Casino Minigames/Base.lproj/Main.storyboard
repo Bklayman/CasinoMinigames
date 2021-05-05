@@ -103,12 +103,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Hit"/>
+                                <connections>
+                                    <action selector="hitButtonPressed:" destination="shz-ud-IOW" eventType="touchUpInside" id="fi3-qq-zpO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpO-HV-2Vo">
                                 <rect key="frame" x="259" y="421" width="89" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Stand"/>
+                                <connections>
+                                    <action selector="standButtonPressed:" destination="shz-ud-IOW" eventType="touchUpInside" id="9Be-P9-9vS"/>
+                                </connections>
                             </button>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="2C" translatesAutoresizingMaskIntoConstraints="NO" id="tRU-j0-Iqd">
                                 <rect key="frame" x="20" y="635" width="77" height="143"/>
