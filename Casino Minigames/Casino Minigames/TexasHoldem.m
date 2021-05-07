@@ -1,4 +1,5 @@
 #include "Card.h"
+#include "Singleton.h"
 #include "TexasHoldem.h"
 
 @interface PointObject:NSObject{
@@ -62,7 +63,6 @@ int turnsTaken;
 int turnsBeforeDeal;
 bool readyToDrawTable;
 bool gameInProgress;
-int currentFunds;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -75,8 +75,8 @@ int currentFunds;
     if([turnOrder[0] intValue] == 0){
         [self dealerTurn];
     }
-    currentFunds = 0; //TODO Set Current Funds
     _playAgainButton.hidden = TRUE;
+    _currentFunds.text = [NSString stringWithFormat:@"%d", [Singleton sharedObject].totalMoney];
 }
 
 - (void)playerTurn{
@@ -289,7 +289,7 @@ int currentFunds;
     gameInProgress = FALSE;
     _dealerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:dealerCards[0]]]];
     _dealerCard2.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:dealerCards[1]]]];
-    currentFunds-= playerBet;
+    [Singleton sharedObject].totalMoney-= playerBet;
     if([turnOrder count] == 2){
         for(int i = 0; i < [tableCards count]; i++){
             [playerCards addObject:tableCards[i]];
@@ -299,16 +299,16 @@ int currentFunds;
         PointObject* dealerPoints = [self getHandPoints:dealerCards];
         NSLog(@"%@%d%@%d", @"Player Points: ", [playerPoints getPoints], @" Dealer Points: ", [dealerPoints getPoints]);
         if([playerPoints getPoints] > [dealerPoints getPoints] || ([playerPoints getPoints] > [dealerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] < 0)){
-            currentFunds+= (playerBet + dealerBet);
+            [Singleton sharedObject].totalMoney+= (playerBet + dealerBet);
         } else if([dealerPoints getPoints] == [playerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] == 0){
-            currentFunds+= ((playerBet + dealerBet) / 2);
+            [Singleton sharedObject].totalMoney+= ((playerBet + dealerBet) / 2);
         }
     } else { //For any folds
         if([turnOrder[0] intValue] == 1){
-            currentFunds+= playerBet + dealerBet;
+            [Singleton sharedObject].totalMoney+= playerBet + dealerBet;
         }
     }
-    _currentFunds.text = [NSString stringWithFormat:@"%d", currentFunds];
+    _currentFunds.text = [NSString stringWithFormat:@"%d", [Singleton sharedObject].totalMoney];
     _playAgainButton.hidden = FALSE;
 }
 

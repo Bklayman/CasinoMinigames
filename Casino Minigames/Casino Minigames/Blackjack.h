@@ -23,6 +23,14 @@
 @property (nonatomic, strong) IBOutlet UIImageView* dealerCard7;
 @property (nonatomic, strong) IBOutlet UIImageView* dealerCard8;
 
+@property (nonatomic, strong) IBOutlet UIButton* betButton;
+@property (nonatomic, strong) IBOutlet UIButton* playAgainButton;
+
+@property (nonatomic, strong) IBOutlet UITextField* betText;
+
+@property (nonatomic, strong) IBOutlet UILabel* betAmount;
+@property (nonatomic, strong) IBOutlet UILabel* fundsAmount;
+
 @end
 
 #endif

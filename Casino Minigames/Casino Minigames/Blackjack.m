@@ -1,5 +1,6 @@
-#include "Card.h"
 #include "Blackjack.h"
+#include "Card.h"
+#include "Singleton.h"
 
 @interface Blackjack ()
 
@@ -11,16 +12,21 @@ NSMutableArray* playerCardsBlackjack;
 NSMutableArray* dealerCardsBlackjack;
 NSMutableArray* deckBlackjack;
 bool roundInProgress;
+int betAmount;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
     playerCardsBlackjack = [[NSMutableArray alloc] init];
     dealerCardsBlackjack = [[NSMutableArray alloc] init];
     deckBlackjack = [Card shuffleDeckRandom:[Card createDeck]];
-    [self startRound];
+    _fundsAmount.text = [NSString stringWithFormat:@"%d", [Singleton sharedObject].totalMoney];
 }
 
 - (void)startRound{
+    [self getPlayerCardImage:0].hidden = FALSE;
+    [self getPlayerCardImage:1].hidden = FALSE;
+    [self getDealerCardImage:0].hidden = FALSE;
+    [self getDealerCardImage:1].hidden = FALSE;
     for(int i = 0; i < 6; i++){
         [self getPlayerCardImage:(i+2)].hidden = TRUE;
         [self getDealerCardImage:(i+2)].hidden = TRUE;
@@ -34,6 +40,30 @@ bool roundInProgress;
     _dealerCard1.image = [UIImage imageNamed:@"red_back"];
     _dealerCard2.image = [UIImage imageNamed:@"red_back"];
     roundInProgress = TRUE;
+}
+
+- (IBAction)playAgainButtonPressed:(id)sender{
+    [playerCardsBlackjack removeAllObjects];
+    [dealerCardsBlackjack removeAllObjects];
+    _betButton.hidden = FALSE;
+    _betText.hidden = FALSE;
+    _playAgainButton.hidden = TRUE;
+}
+
+- (IBAction)betButtonPressed:(id)sender{
+    NSString* betText = _betText.text;
+    NSError* error = NULL;
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]+" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:betText options:0 range:NSMakeRange(0, [betText length])];
+    if(numberOfMatches == 0){
+        return; //betText is not a valid integer
+    }
+    betAmount = [betText intValue];
+    _betAmount.text = _betText.text;
+    _betText.hidden = TRUE;
+    _betButton.hidden = TRUE;
+    _betText.text = @"";
+    [self startRound];
 }
 
 - (IBAction)hitButtonPressed:(id)sender{
@@ -72,12 +102,20 @@ bool roundInProgress;
 }
 
 -(void)determineWinner{
+    NSLog(@"%d", [Singleton sharedObject].totalMoney);
     roundInProgress = FALSE;
     int playerPoints = [self getHandValue:playerCardsBlackjack];
     int dealerPoints = [self getHandValue:dealerCardsBlackjack];
-    if(playerPoints < 22 && playerPoints > dealerPoints){
-        //TODO
+    NSLog(@"%d %d", playerPoints, dealerPoints);
+    if(playerPoints < 22 && playerPoints > dealerPoints && playerPoints != 0 && playerPoints != dealerPoints){
+        [Singleton sharedObject].totalMoney+= betAmount;
+        NSLog(@"Here");
+    } else {
+        [Singleton sharedObject].totalMoney-= betAmount;
     }
+    _fundsAmount.text = [NSString stringWithFormat:@"%d", [Singleton sharedObject].totalMoney];
+    _playAgainButton.hidden = FALSE;
+    NSLog(@"%d", [Singleton sharedObject].totalMoney);
 }
 
 - (NSMutableArray*)handValueHelper:(int)curValue :(NSMutableArray*)hand :(int)curIndex{//Returns array of point totals
@@ -188,7 +226,7 @@ bool roundInProgress;
             bestScore = [totals[i] intValue];
         }
     }
-    return bestScore;
+    return bestScore; //TODO Aces sometimes return when always busting
 }
  
 - (Card*)drawCardWithCheck{
@@ -197,7 +235,9 @@ bool roundInProgress;
         [self removeUsedCards:playerCardsBlackjack];
         [self removeUsedCards:dealerCardsBlackjack];
     }
-    Card* result = deckBlackjack[0];
+    NSLog(@"Here2 %d", (int)[deckBlackjack count]);
+    Card* result = deckBlackjack[0]; //TODO Indexing error becasue :(
+    NSLog(@"Here3");
     [deckBlackjack removeObjectAtIndex:0];
     return result;
 }
