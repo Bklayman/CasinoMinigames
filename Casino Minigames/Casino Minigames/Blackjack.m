@@ -43,6 +43,8 @@ int betAmount;
 }
 
 - (IBAction)playAgainButtonPressed:(id)sender{
+    [playerCardsBlackjack removeAllObjects];
+    [dealerCardsBlackjack removeAllObjects];
     _betButton.hidden = FALSE;
     _betText.hidden = FALSE;
     _playAgainButton.hidden = TRUE;
@@ -100,16 +102,20 @@ int betAmount;
 }
 
 -(void)determineWinner{
+    NSLog(@"%d", [Singleton sharedObject].totalMoney);
     roundInProgress = FALSE;
     int playerPoints = [self getHandValue:playerCardsBlackjack];
     int dealerPoints = [self getHandValue:dealerCardsBlackjack];
-    if(playerPoints < 22 && playerPoints > dealerPoints){
+    NSLog(@"%d %d", playerPoints, dealerPoints);
+    if(playerPoints < 22 && playerPoints > dealerPoints && playerPoints != 0 && playerPoints != dealerPoints){
         [Singleton sharedObject].totalMoney+= betAmount;
+        NSLog(@"Here");
     } else {
         [Singleton sharedObject].totalMoney-= betAmount;
     }
     _fundsAmount.text = [NSString stringWithFormat:@"%d", [Singleton sharedObject].totalMoney];
     _playAgainButton.hidden = FALSE;
+    NSLog(@"%d", [Singleton sharedObject].totalMoney);
 }
 
 - (NSMutableArray*)handValueHelper:(int)curValue :(NSMutableArray*)hand :(int)curIndex{//Returns array of point totals
@@ -220,7 +226,7 @@ int betAmount;
             bestScore = [totals[i] intValue];
         }
     }
-    return bestScore;
+    return bestScore; //TODO Aces sometimes return when always busting
 }
  
 - (Card*)drawCardWithCheck{
@@ -229,7 +235,9 @@ int betAmount;
         [self removeUsedCards:playerCardsBlackjack];
         [self removeUsedCards:dealerCardsBlackjack];
     }
-    Card* result = deckBlackjack[0];
+    NSLog(@"Here2 %d", (int)[deckBlackjack count]);
+    Card* result = deckBlackjack[0]; //TODO Indexing error becasue :(
+    NSLog(@"Here3");
     [deckBlackjack removeObjectAtIndex:0];
     return result;
 }
