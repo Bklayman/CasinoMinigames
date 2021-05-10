@@ -84,7 +84,7 @@
 		4F962E7F262484A600D98DE0 /* TexasHoldem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexasHoldem.h; sourceTree = "<group>"; };
 		4F962E8526248AC800D98DE0 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		4F962E8626248CAA00D98DE0 /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
-		4FC0E68E263C407E000DC646 /* Blackjack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Blackjack.m; sourceTree = "<group>"; };
+		4FC0E68E263C407E000DC646 /* Blackjack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Blackjack.m; sourceTree = "<group>"; tabWidth = 5; };
 		4FC0E693263C4086000DC646 /* Blackjack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blackjack.h; sourceTree = "<group>"; };
 		4FDEC5C6264580D400BBD54E /* Singleton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		4FDEC5CB264580DC00BBD54E /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
