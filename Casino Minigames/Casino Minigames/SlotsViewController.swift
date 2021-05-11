@@ -21,25 +21,27 @@ class SlotsViewController: UIViewController {
     @IBOutlet weak var image8: UIImageView!
     @IBOutlet weak var image9: UIImageView!
     
-    var points = 1000
+    //var money = Singleton.sharedObject()
+    //var Singleton.sharedObject().totalMoney = Singleton.sharedObject().totalMoney
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pointsLabel.text = "$\(Singleton.sharedObject().totalMoney)"
     }
 
     @IBAction func spinButtonAction(_ sender: Any) {
-        spinNewImages(bet: 10)
+        spinNewImages(bet: Int32(1))
     }
     
     @IBAction func spinButtonAction2(_ sender: Any) {
-        spinNewImages(bet: 50)
+        spinNewImages(bet: Int32(5))
     }
 
     @IBAction func spinButtonAction3(_ sender: Any) {
-        spinNewImages(bet: 100)
+        spinNewImages(bet: Int32(10))
     }
     
-    func spinNewImages(bet: Int){
+    func spinNewImages(bet: Int32){
         
         //generate random numbers
         let num1 = Int.random(in: 1...6)
@@ -74,80 +76,80 @@ class SlotsViewController: UIViewController {
         UIView.transition(with: image8, duration: 0.5, options: .transitionFlipFromTop, animations: nil, completion: nil)
         UIView.transition(with: image9, duration: 0.5, options: .transitionFlipFromTop, animations: nil, completion: nil)
         
-        //calculate points
-        var curr = 0
-        points -= bet
+        //calculate Singleton.sharedObject().totalMoney
+        var curr = Int32(0)
+        Singleton.sharedObject().totalMoney -= bet
         curr -= bet
 
         //sevens
         if num1 == 4 && num2 == 4 && num3 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         if num4 == 4 && num5 == 4 && num6 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         if num7 == 4 && num8 == 4 && num9 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         if num1 == 4 && num4 == 4 && num7 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         if num2 == 4 && num5 == 4 && num8 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         if num3 == 4 && num6 == 4 && num9 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         if num2 == 4 && num4 == 4 && num9 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         if num2 == 4 && num6 == 4 && num7 == 4 {
-            points += bet*7
+            Singleton.sharedObject().totalMoney += bet*7
             curr += bet*7
         }
         //3 matches
         if num1 == num2 && num2 == num3 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         if num4 == num5 && num5 == num6 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         if num7 == num8 && num8 == num9 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         if num2 == num4 && num4 == num9 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         if num2 == num6 && num6 == num7 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         if num1 == num4 && num4 == num7 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         if num2 == num5 && num5 == num8 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         if num3 == num6 && num6 == num9 {
-            points += bet*3
-            curr += bet*3
+            Singleton.sharedObject().totalMoney += bet*4
+            curr += bet*4
         }
         
-        //display points
-        pointsLabel.text = "$\(points)"
+        //display Singleton.sharedObject().totalMoney
+        pointsLabel.text = "$\(Singleton.sharedObject().totalMoney)"
         if(curr > 0){
             currLabel.text = "+\(curr)"
         }

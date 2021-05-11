@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -34,17 +35,17 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxy-F6-e4N">
-                                <rect key="frame" x="283" y="732" width="70" height="48"/>
+                                <rect key="frame" x="273.5" y="732" width="51" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="$100"/>
+                                <state key="normal" title="$10"/>
                                 <connections>
                                     <action selector="spinButtonAction3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1rA-BD-R3G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZI-DV-25E">
-                                <rect key="frame" x="179" y="732" width="56" height="48"/>
+                                <rect key="frame" x="188.5" y="732" width="37" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="$50"/>
+                                <state key="normal" title="$5"/>
                                 <connections>
                                     <action selector="spinButtonAction2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l6f-DH-3N6"/>
                                 </connections>
@@ -66,7 +67,7 @@
                                     <constraint firstAttribute="height" constant="200" id="FHR-MS-7Xc"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGi-2q-KiH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGi-2q-KiH">
                                 <rect key="frame" x="16" y="140" width="382" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -96,9 +97,9 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-HZ-bC8">
-                                <rect key="frame" x="80" y="732" width="51" height="48"/>
+                                <rect key="frame" x="107.5" y="732" width="33" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="$10"/>
+                                <state key="normal" title="$1"/>
                                 <connections>
                                     <action selector="spinButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uyn-c1-uSU"/>
                                 </connections>

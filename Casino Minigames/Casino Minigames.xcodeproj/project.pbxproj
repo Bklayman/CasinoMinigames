@@ -12,6 +12,14 @@
 		255104F82642D8500067FF70 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 255104F72642D8500067FF70 /* horse.png */; };
 		2597D51D264581DB0040233A /* Casino_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2597D51C264581DB0040233A /* Casino_bg.jpg */; };
 		2597D51F264585C00040233A /* casino_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 2597D51E264585BF0040233A /* casino_button.png */; };
+		498C6216264AF2A900356AE5 /* DiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6215264AF2A800356AE5 /* DiceViewController.swift */; };
+		498C6218264AF2B600356AE5 /* Dice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 498C6217264AF2B600356AE5 /* Dice.storyboard */; };
+		498C621F264AF2C600356AE5 /* dice6.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C6219264AF2C500356AE5 /* dice6.png */; };
+		498C6220264AF2C600356AE5 /* dice1.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621A264AF2C500356AE5 /* dice1.png */; };
+		498C6221264AF2C600356AE5 /* dice4.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621B264AF2C500356AE5 /* dice4.png */; };
+		498C6222264AF2C600356AE5 /* dice3.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621C264AF2C500356AE5 /* dice3.png */; };
+		498C6223264AF2C600356AE5 /* dice2.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621D264AF2C500356AE5 /* dice2.png */; };
+		498C6224264AF2C600356AE5 /* dice5.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621E264AF2C600356AE5 /* dice5.png */; };
 		49C6972C26403C53005078C5 /* Slots.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C6972B26403C52005078C5 /* Slots.storyboard */; };
 		49C6972E26403C60005078C5 /* SlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C6972D26403C60005078C5 /* SlotsViewController.swift */; };
 		49C6973526403C6E005078C5 /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C6972F26403C6D005078C5 /* image3.png */; };
@@ -57,6 +65,14 @@
 		255104F72642D8500067FF70 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
 		2597D51C264581DB0040233A /* Casino_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Casino_bg.jpg; sourceTree = "<group>"; };
 		2597D51E264585BF0040233A /* casino_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = casino_button.png; sourceTree = "<group>"; };
+		498C6215264AF2A800356AE5 /* DiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceViewController.swift; sourceTree = "<group>"; };
+		498C6217264AF2B600356AE5 /* Dice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dice.storyboard; sourceTree = "<group>"; };
+		498C6219264AF2C500356AE5 /* dice6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice6.png; sourceTree = "<group>"; };
+		498C621A264AF2C500356AE5 /* dice1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice1.png; sourceTree = "<group>"; };
+		498C621B264AF2C500356AE5 /* dice4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice4.png; sourceTree = "<group>"; };
+		498C621C264AF2C500356AE5 /* dice3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice3.png; sourceTree = "<group>"; };
+		498C621D264AF2C500356AE5 /* dice2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice2.png; sourceTree = "<group>"; };
+		498C621E264AF2C600356AE5 /* dice5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice5.png; sourceTree = "<group>"; };
 		49C6972B26403C52005078C5 /* Slots.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Slots.storyboard; sourceTree = "<group>"; };
 		49C6972D26403C60005078C5 /* SlotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsViewController.swift; sourceTree = "<group>"; };
 		49C6972F26403C6D005078C5 /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
@@ -154,6 +170,8 @@
 				4F18BAFD26209D9B0017A1F8 /* Main.storyboard */,
 				49C6972D26403C60005078C5 /* SlotsViewController.swift */,
 				49C6972B26403C52005078C5 /* Slots.storyboard */,
+				498C6215264AF2A800356AE5 /* DiceViewController.swift */,
+				498C6217264AF2B600356AE5 /* Dice.storyboard */,
 				2597D51C264581DB0040233A /* Casino_bg.jpg */,
 				2597D51E264585BF0040233A /* casino_button.png */,
 				49C6973026403C6D005078C5 /* image1.png */,
@@ -161,8 +179,14 @@
 				49C6972F26403C6D005078C5 /* image3.png */,
 				49C6973226403C6D005078C5 /* image4.png */,
 				49C6973426403C6E005078C5 /* image5.png */,
-				255104F72642D8500067FF70 /* horse.png */,
 				49C6973326403C6E005078C5 /* image6.png */,
+				498C621A264AF2C500356AE5 /* dice1.png */,
+				498C621D264AF2C500356AE5 /* dice2.png */,
+				498C621C264AF2C500356AE5 /* dice3.png */,
+				498C621B264AF2C500356AE5 /* dice4.png */,
+				498C621E264AF2C600356AE5 /* dice5.png */,
+				498C6219264AF2C500356AE5 /* dice6.png */,
+				255104F72642D8500067FF70 /* horse.png */,
 				4F18BB0026209D9C0017A1F8 /* Assets.xcassets */,
 				4F18BB0226209D9C0017A1F8 /* LaunchScreen.storyboard */,
 				4F18BB0526209D9C0017A1F8 /* Info.plist */,
@@ -295,16 +319,23 @@
 			files = (
 				2597D51F264585C00040233A /* casino_button.png in Resources */,
 				49C6972C26403C53005078C5 /* Slots.storyboard in Resources */,
+				498C6220264AF2C600356AE5 /* dice1.png in Resources */,
 				49C6973A26403C6E005078C5 /* image5.png in Resources */,
+				498C6218264AF2B600356AE5 /* Dice.storyboard in Resources */,
+				498C621F264AF2C600356AE5 /* dice6.png in Resources */,
+				498C6224264AF2C600356AE5 /* dice5.png in Resources */,
 				49C6973926403C6E005078C5 /* image6.png in Resources */,
+				498C6223264AF2C600356AE5 /* dice2.png in Resources */,
 				49C6973526403C6E005078C5 /* image3.png in Resources */,
 				4F18BB0426209D9C0017A1F8 /* LaunchScreen.storyboard in Resources */,
 				2597D51D264581DB0040233A /* Casino_bg.jpg in Resources */,
 				49C6973626403C6E005078C5 /* image1.png in Resources */,
 				255104F82642D8500067FF70 /* horse.png in Resources */,
+				498C6221264AF2C600356AE5 /* dice4.png in Resources */,
 				49C6973826403C6E005078C5 /* image4.png in Resources */,
 				4F18BB0126209D9C0017A1F8 /* Assets.xcassets in Resources */,
 				4F18BAFF26209D9B0017A1F8 /* Main.storyboard in Resources */,
+				498C6222264AF2C600356AE5 /* dice3.png in Resources */,
 				49C6973726403C6E005078C5 /* image2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +366,7 @@
 				4F18BAFC26209D9B0017A1F8 /* ViewController.swift in Sources */,
 				4FC0E68F263C407E000DC646 /* Blackjack.m in Sources */,
 				4F18BAF826209D9B0017A1F8 /* AppDelegate.swift in Sources */,
+				498C6216264AF2A900356AE5 /* DiceViewController.swift in Sources */,
 				252E37692640493D002F48C5 /* horseRaceController.swift in Sources */,
 				4F962E7B2624849500D98DE0 /* TexasHoldem.m in Sources */,
 				49C6972E26403C60005078C5 /* SlotsViewController.swift in Sources */,

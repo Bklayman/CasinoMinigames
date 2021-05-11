@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet var blackjackButton: UIButton!
     @IBOutlet var slotButton: UIButton!
     @IBOutlet var horseButton: UIButton!
-
+    @IBOutlet var diceButton: UIButton!
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,6 +25,7 @@ class ViewController: UIViewController {
         blackjackButton.frame = CGRect(x: 7, y: 420, width: 400, height: 100)
         slotButton.frame = CGRect(x: 7, y: 540, width: 400, height: 100)
         horseButton.frame = CGRect(x: 7, y: 660, width: 400, height: 100)
+        diceButton.frame = CGRect(x: 7, y: 780, width: 400, height: 100)
     }
 
     func casinoBackground(){
