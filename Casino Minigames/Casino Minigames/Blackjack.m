@@ -20,7 +20,6 @@ int betAmount;
     dealerCardsBlackjack = [[NSMutableArray alloc] init];
     deckBlackjack = [Card shuffleDeckRandom:[Card createDeck]];
     _fundsAmount.text = [NSString stringWithFormat:@"%d", [Singleton sharedObject].totalMoney];
-    [self testHandValue];
 }
 
 - (void)startRound{
