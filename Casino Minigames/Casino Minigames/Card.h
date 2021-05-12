@@ -33,6 +33,8 @@
 
 - (void)print;
 
++ (Card*)getCard:(NSString*)value :(NSString*)suit;
+
 @end
 
 #endif /* Card_h */

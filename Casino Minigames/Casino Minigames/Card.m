@@ -191,4 +191,11 @@
     NSLog([NSString stringWithFormat:@"%@%@%@", value, @" of ", suit]);
 }
 
++ (Card*)getCard:(NSString*)value :(NSString*)suit{
+    Card* result = [[Card alloc] init];
+    [result setSuit:suit];
+    [result setValue:value];
+    return result;
+}
+
 @end
