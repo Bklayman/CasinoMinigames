@@ -20,6 +20,7 @@
 		498C6222264AF2C600356AE5 /* dice3.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621C264AF2C500356AE5 /* dice3.png */; };
 		498C6223264AF2C600356AE5 /* dice2.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621D264AF2C500356AE5 /* dice2.png */; };
 		498C6224264AF2C600356AE5 /* dice5.png in Resources */ = {isa = PBXBuildFile; fileRef = 498C621E264AF2C600356AE5 /* dice5.png */; };
+		499690B7264C7F270096BCD0 /* slotbg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 499690B6264C7F270096BCD0 /* slotbg.jpeg */; };
 		49C6972C26403C53005078C5 /* Slots.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C6972B26403C52005078C5 /* Slots.storyboard */; };
 		49C6972E26403C60005078C5 /* SlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C6972D26403C60005078C5 /* SlotsViewController.swift */; };
 		49C6973526403C6E005078C5 /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C6972F26403C6D005078C5 /* image3.png */; };
@@ -73,6 +74,7 @@
 		498C621C264AF2C500356AE5 /* dice3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice3.png; sourceTree = "<group>"; };
 		498C621D264AF2C500356AE5 /* dice2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice2.png; sourceTree = "<group>"; };
 		498C621E264AF2C600356AE5 /* dice5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice5.png; sourceTree = "<group>"; };
+		499690B6264C7F270096BCD0 /* slotbg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = slotbg.jpeg; sourceTree = "<group>"; };
 		49C6972B26403C52005078C5 /* Slots.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Slots.storyboard; sourceTree = "<group>"; };
 		49C6972D26403C60005078C5 /* SlotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsViewController.swift; sourceTree = "<group>"; };
 		49C6972F26403C6D005078C5 /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				498C6217264AF2B600356AE5 /* Dice.storyboard */,
 				2597D51C264581DB0040233A /* Casino_bg.jpg */,
 				2597D51E264585BF0040233A /* casino_button.png */,
+				499690B6264C7F270096BCD0 /* slotbg.jpeg */,
 				49C6973026403C6D005078C5 /* image1.png */,
 				49C6973126403C6D005078C5 /* image2.png */,
 				49C6972F26403C6D005078C5 /* image3.png */,
@@ -333,6 +336,7 @@
 				255104F82642D8500067FF70 /* horse.png in Resources */,
 				498C6221264AF2C600356AE5 /* dice4.png in Resources */,
 				49C6973826403C6E005078C5 /* image4.png in Resources */,
+				499690B7264C7F270096BCD0 /* slotbg.jpeg in Resources */,
 				4F18BB0126209D9C0017A1F8 /* Assets.xcassets in Resources */,
 				4F18BAFF26209D9B0017A1F8 /* Main.storyboard in Resources */,
 				498C6222264AF2C600356AE5 /* dice3.png in Resources */,

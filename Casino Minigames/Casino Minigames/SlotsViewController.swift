@@ -21,9 +21,6 @@ class SlotsViewController: UIViewController {
     @IBOutlet weak var image8: UIImageView!
     @IBOutlet weak var image9: UIImageView!
     
-    //var money = Singleton.sharedObject()
-    //var Singleton.sharedObject().totalMoney = Singleton.sharedObject().totalMoney
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         pointsLabel.text = "$\(Singleton.sharedObject().totalMoney)"
