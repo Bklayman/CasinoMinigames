@@ -9,6 +9,13 @@
 @synthesize suit;
 @synthesize value;
 
+- (id)init{
+    self = [super init];
+    suit = @"";
+    value = @"";
+    return self;
+}
+
 - (NSString*)getSuit{
     return suit;
 }
@@ -151,13 +158,6 @@
     return [NSString stringWithFormat:@"%@%@", valueAdd, suitAdd];
 }
 
-- (id)init{
-    self = [super init];
-    suit = @"";
-    value = @"";
-    return self;
-}
-
 - (int)compareValues:(Card*)second{
     int value1 = -1;
     int value2 = -1;
@@ -188,7 +188,14 @@
 }
 
 - (void)print{
-    NSLog([NSString stringWithFormat:@"%@%@%@", value, @" of ", suit]);
+    NSLog(@"%@%@%@", value, @" of ", suit);
+}
+
++ (Card*)getCard:(NSString*)value :(NSString*)suit{
+    Card* result = [[Card alloc] init];
+    [result setSuit:suit];
+    [result setValue:value];
+    return result;
 }
 
 @end

@@ -20,7 +20,6 @@ int betAmount;
     dealerCardsBlackjack = [[NSMutableArray alloc] init];
     deckBlackjack = [Card shuffleDeckRandom:[Card createDeck]];
     _fundsAmount.text = [NSString stringWithFormat:@"%d", [Singleton sharedObject].totalMoney];
-    [self testHandValue];
 }
 
 - (void)startRound{
@@ -57,7 +56,7 @@ int betAmount;
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]+" options:NSRegularExpressionCaseInsensitive error:&error];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:betText options:0 range:NSMakeRange(0, [betText length])];
     if(numberOfMatches == 0){
-        return; //betText is not a valid integer
+        return;
     }
     betAmount = [betText intValue];
     _betAmount.text = _betText.text;
@@ -233,7 +232,7 @@ int betAmount;
             bestScore = [totals[i] intValue];
         }
     }
-    return bestScore; //TODO Aces sometimes return when always busting
+    return bestScore;
 }
  
 - (Card*)drawCardWithCheck{
@@ -258,50 +257,43 @@ int betAmount;
     }
 }
 
-- (Card*)getCard:(NSString*)value :(NSString*)suit{
-    Card* result = [[Card alloc] init];
-    [result setSuit:suit];
-    [result setValue:value];
-    return result;
-}
-
 - (void)testHandValue{
     NSMutableArray* hand = [[NSMutableArray alloc]init];
     int value = -1;
-    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
-    [hand addObject:[self getCard:@"10" :@"Hearts"]];
-    [hand addObject:[self getCard:@"9" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"10" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"9" :@"Hearts"]];
     value = [self getHandValue:hand];
     NSLog(@"Expected: 20");
     NSLog(@"%d", value);
     [hand removeAllObjects];
-    [hand addObject:[self getCard:@"10" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
-    [hand addObject:[self getCard:@"9" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"10" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"9" :@"Hearts"]];
     value = [self getHandValue:hand];
     NSLog(@"Expected: 20");
     NSLog(@"%d", value);
     [hand removeAllObjects];
-    [hand addObject:[self getCard:@"10" :@"Hearts"]];
-    [hand addObject:[self getCard:@"9" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"10" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"9" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Hearts"]];
     value = [self getHandValue:hand];
     NSLog(@"Expected: 20");
     NSLog(@"%d", value);
     [hand removeAllObjects];
-    [hand addObject:[self getCard:@"Ace" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"10" :@"Hearts"]];
-    [hand addObject:[self getCard:@"9" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Diamonds"]];
+    [hand addObject:[Card getCard:@"10" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"9" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Hearts"]];
     value = [self getHandValue:hand];
     NSLog(@"Expected: 21");
     NSLog(@"%d", value);
     [hand removeAllObjects];
-    [hand addObject:[self getCard:@"Ace" :@"Diamonds"]];
-    [hand addObject:[self getCard:@"10" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Ace" :@"Clubs"]];
-    [hand addObject:[self getCard:@"9" :@"Hearts"]];
-    [hand addObject:[self getCard:@"Ace" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Diamonds"]];
+    [hand addObject:[Card getCard:@"10" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Clubs"]];
+    [hand addObject:[Card getCard:@"9" :@"Hearts"]];
+    [hand addObject:[Card getCard:@"Ace" :@"Hearts"]];
     value = [self getHandValue:hand];
     NSLog(@"Expected: -1");
     NSLog(@"%d", value);

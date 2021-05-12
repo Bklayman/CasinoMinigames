@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         horseButton.frame = CGRect(x: 7, y: 660, width: 400, height: 100)
         diceButton.frame = CGRect(x: 7, y: 780, width: 400, height: 100)
      
-          moneyLabel.text = "Cash: \(Singleton.sharedObject().totalMoney)"
+          //moneyLabel.text = "Cash: \(Singleton.sharedObject().totalMoney)"
     }
 
     func casinoBackground(){
