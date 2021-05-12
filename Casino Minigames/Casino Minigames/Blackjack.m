@@ -56,7 +56,7 @@ int betAmount;
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]+" options:NSRegularExpressionCaseInsensitive error:&error];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:betText options:0 range:NSMakeRange(0, [betText length])];
     if(numberOfMatches == 0){
-        return; //betText is not a valid integer
+        return;
     }
     betAmount = [betText intValue];
     _betAmount.text = _betText.text;
@@ -232,7 +232,7 @@ int betAmount;
             bestScore = [totals[i] intValue];
         }
     }
-    return bestScore; //TODO Aces sometimes return when always busting
+    return bestScore;
 }
  
 - (Card*)drawCardWithCheck{
