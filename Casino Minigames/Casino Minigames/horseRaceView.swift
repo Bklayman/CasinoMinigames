@@ -53,6 +53,8 @@ class HorseRaceView: UIView {
         drawx = drawx + hspeed
         drawy = drawy + vspeed
         
+        //var horseExitCount = 0
+        
         for n in 0...3 {
             drawx[n] = drawx[n] + hspeed[n]
             drawy[n] = drawy[n] + vspeed[n]
@@ -60,7 +62,6 @@ class HorseRaceView: UIView {
             if Int.random(in: 1...60) == 60 {
                 hspeed[n] += Int.random(in: -1...1)
             }
-            
             if hspeed[n] < -1 {
                 hspeed[n] = -1
             }
@@ -76,12 +77,14 @@ class HorseRaceView: UIView {
                 if WinningHorse.sharedHorseWin.wonhorse == 0 {
                     WinningHorse.sharedHorseWin.wonhorse = n + 1
                 }
-                //ViewController.shared.horseWin(horse: n)
+                
+                //HorseRaceController.shared.horseWin()
             }
             if drawy[n] > (Int(self.bounds.maxY) - 50) {
                 vspeed[n] = -vspeed[n]
             }
         }
+        
         setNeedsDisplay()
         
     }

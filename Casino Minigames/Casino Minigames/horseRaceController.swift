@@ -19,13 +19,14 @@ class HorseRaceController: UIViewController {
     
     @IBOutlet weak var horseView: HorseRaceView!
     @IBOutlet weak var horseRaceLabel: UILabel!
+    @IBOutlet weak var sharedCashLabel: UILabel!
     
     @IBOutlet weak var horseBetNumberText: UITextField!
     @IBOutlet weak var horseBetWagerText: UITextField!
     
     @IBOutlet var raceButton: UIButton!
     
-    static let shared = ViewController()
+    static let shared = HorseRaceController()
 
     var wager:Int = 0
     var wagerOdds:Int = 4
@@ -47,7 +48,6 @@ class HorseRaceController: UIViewController {
         }
         horseText()
         
-        //self.scoreLabel.text = "Score: \(self.score)"
     }
     
     @IBAction func startHorseRace() {
@@ -59,31 +59,37 @@ class HorseRaceController: UIViewController {
         wager = Int(ttext!) ?? 0
         WinningHorse.sharedHorseWin.wonhorse = 0
         
+        /*
+        if wager > Singleton.sharedObject().totalMoney {
+            wager = Int(Singleton.sharedObject().totalMoney)
+            horseBetWagerText.text = "\(wager)"
+        }*/
+        
+        Singleton.sharedObject().totalMoney -= Int32(self.wager)
+        
         horseView.startRace()
     }
     
     func horseText() {
+        self.sharedCashLabel.text = "Current Cash: \(Singleton.sharedObject().totalMoney)"
+        
         if WinningHorse.sharedHorseWin.wonhorse == 0 {
             self.horseRaceLabel.text = "Bet on a horse and enter your wager"
-        } else {
+        } else if WinningHorse.sharedHorseWin.horseRaceStart == true {
             if (self.decidedHorse == WinningHorse.sharedHorseWin.wonhorse) {
                 self.horseRaceLabel.text = "Horse \(WinningHorse.sharedHorseWin.wonhorse) wins! You won $\(self.wager * self.wagerOdds)"
+                Singleton.sharedObject().totalMoney += Int32(self.wager * self.wagerOdds)
             } else {
                 self.horseRaceLabel.text = "Horse \(WinningHorse.sharedHorseWin.wonhorse) wins! Try Again!"
             }
+            
+            WinningHorse.sharedHorseWin.horseRaceStart = false;
         }
     }
     
-    func horseWin(horse: Int) {
-        
+    func horseWin() {
         WinningHorse.sharedHorseWin.horseRaceStart = false;
-        
-            //horseRaceLabel?.text = "Horse \(wonhorse) wins!"//mess
-        //}//mess
-        //horseText()
     }
-    
-    //self.displayScore()
     
 }
 
