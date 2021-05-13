@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet var slotButton: UIButton!
     @IBOutlet var horseButton: UIButton!
     @IBOutlet var diceButton: UIButton!
+     @IBOutlet var sportButton: UIButton!
      
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +23,12 @@ class ViewController: UIViewController {
         
         casinoBackground();
         
-        holdemButton.frame = CGRect(x: 7, y: 300, width: 400, height: 100)
-        blackjackButton.frame = CGRect(x: 7, y: 420, width: 400, height: 100)
-        slotButton.frame = CGRect(x: 7, y: 540, width: 400, height: 100)
-        horseButton.frame = CGRect(x: 7, y: 660, width: 400, height: 100)
-        diceButton.frame = CGRect(x: 7, y: 780, width: 400, height: 100)
+        holdemButton.frame = CGRect(x: 7, y: 180, width: 400, height: 100)
+        blackjackButton.frame = CGRect(x: 7, y: 300, width: 400, height: 100)
+        slotButton.frame = CGRect(x: 7, y: 420, width: 400, height: 100)
+        horseButton.frame = CGRect(x: 7, y: 540, width: 400, height: 100)
+        diceButton.frame = CGRect(x: 7, y: 660, width: 400, height: 100)
+        sportButton.frame = CGRect(x: 7, y: 780, width: 400, height: 100)
      
           //moneyLabel.text = "Cash: \(Singleton.sharedObject().totalMoney)"
     }
