@@ -16,8 +16,8 @@ class SportView: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        var homeX = 10
-        var awayX = 250
+        let homeX = 10
+        let awayX = 250
         var homeY = 150
         var awayY = 150
         
@@ -32,8 +32,6 @@ class SportView: UIView {
         imageView2.frame = CGRect(x: awayX, y: awayY, width: 100, height: 200)
         imageView2.transform = CGAffineTransform(scaleX: -1, y: 1)
         self.addSubview(imageView2)
-        
-        NSLog("DrawRect called")
         
     }
 

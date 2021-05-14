@@ -12,6 +12,7 @@
 		255104F82642D8500067FF70 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 255104F72642D8500067FF70 /* horse.png */; };
 		2597D51D264581DB0040233A /* Casino_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2597D51C264581DB0040233A /* Casino_bg.jpg */; };
 		2597D51F264585C00040233A /* casino_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 2597D51E264585BF0040233A /* casino_button.png */; };
+		25B867A1264EEAE7003B7303 /* horseSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B867A0264EEAE7003B7303 /* horseSingleton.swift */; };
 		25E2CE8A264D924300E6D86A /* sportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E2CE89264D924300E6D86A /* sportController.swift */; };
 		25E2CE8C264D926B00E6D86A /* sportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E2CE8B264D926B00E6D86A /* sportView.swift */; };
 		25E2CE8E264D935400E6D86A /* Basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E2CE8D264D935400E6D86A /* Basketball.png */; };
@@ -69,6 +70,7 @@
 		255104F72642D8500067FF70 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
 		2597D51C264581DB0040233A /* Casino_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Casino_bg.jpg; sourceTree = "<group>"; };
 		2597D51E264585BF0040233A /* casino_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = casino_button.png; sourceTree = "<group>"; };
+		25B867A0264EEAE7003B7303 /* horseSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = horseSingleton.swift; sourceTree = "<group>"; };
 		25E2CE89264D924300E6D86A /* sportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sportController.swift; sourceTree = "<group>"; };
 		25E2CE8B264D926B00E6D86A /* sportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sportView.swift; sourceTree = "<group>"; };
 		25E2CE8D264D935400E6D86A /* Basketball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Basketball.png; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				4FDEC5C6264580D400BBD54E /* Singleton.m */,
 				4FDEC5CB264580DC00BBD54E /* Singleton.h */,
 				252E37682640493D002F48C5 /* horseRaceController.swift */,
+				25B867A0264EEAE7003B7303 /* horseSingleton.swift */,
 				252E376A2640495B002F48C5 /* horseRaceView.swift */,
 				4F18BAFD26209D9B0017A1F8 /* Main.storyboard */,
 				25E2CE89264D924300E6D86A /* sportController.swift */,
@@ -384,6 +387,7 @@
 				252E37692640493D002F48C5 /* horseRaceController.swift in Sources */,
 				4F962E7B2624849500D98DE0 /* TexasHoldem.m in Sources */,
 				25E2CE8C264D926B00E6D86A /* sportView.swift in Sources */,
+				25B867A1264EEAE7003B7303 /* horseSingleton.swift in Sources */,
 				25E2CE8A264D924300E6D86A /* sportController.swift in Sources */,
 				49C6972E26403C60005078C5 /* SlotsViewController.swift in Sources */,
 				4F18BAFA26209D9B0017A1F8 /* SceneDelegate.swift in Sources */,

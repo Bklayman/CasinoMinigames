@@ -647,7 +647,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Home Team"/>
                                 <connections>
-                                    <action selector="betOnHome" destination="GSF-n2-O86" eventType="touchDown" id="bnS-Os-63i"/>
+                                    <action selector="betOnHome:" destination="GSF-n2-O86" eventType="touchDown" id="k1D-jg-lHe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wax-5L-Fhv">
@@ -655,7 +655,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Away Team"/>
                                 <connections>
-                                    <action selector="betOnAway" destination="GSF-n2-O86" eventType="touchDown" id="veQ-yt-Hd3"/>
+                                    <action selector="betOnAway:" destination="GSF-n2-O86" eventType="touchDown" id="3n6-hb-HkR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKS-33-5iV">

@@ -171,11 +171,11 @@ class SportController: UIViewController {
         self.timerLabel.text = "Time Left: \(self.timeLeft):00"
     }
     
-    @IBAction func betOnHome() {
+    @IBAction func betOnHome(_ sender: UIButton) {
         self.decidedTeam = "Home"
     }
     
-    @IBAction func betOnAway() {
+    @IBAction func betOnAway(_ sender: UIButton) {
         self.decidedTeam = "Away"
     }
     

@@ -74,11 +74,14 @@ class HorseRaceView: UIView {
             }
             if drawx[n] > (Int(self.bounds.maxX)) {
                 //hspeed[n] = -hspeed[n]
+                
+                /*
                 if WinningHorse.sharedHorseWin.wonhorse == 0 {
                     WinningHorse.sharedHorseWin.wonhorse = n + 1
                 }
+                */
                 
-                //HorseRaceController.shared.horseWin()
+                WinningHorse.sharedHorseWin.horseWin(horse: n)
             }
             if drawy[n] > (Int(self.bounds.maxY) - 50) {
                 vspeed[n] = -vspeed[n]
