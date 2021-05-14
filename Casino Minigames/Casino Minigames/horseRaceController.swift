@@ -50,7 +50,7 @@ class HorseRaceController: UIViewController {
     }
     
     @objc func update() {
-        print("Update")
+        //print("Update")
         if WinningHorse.sharedHorseWin.horseRaceStart == true {
             horseView.update()
         }

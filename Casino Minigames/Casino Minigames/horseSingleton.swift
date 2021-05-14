@@ -12,19 +12,19 @@ class WinningHorse {
     private init() {}
     
     func printhorse() {
-        print("Horse Update")
+        //print("Horse Update")
     }
     func startRace() {
-        horseRaceStart = true
+        horseRaceStart = true;
         wonhorse = 0;
     }
     func stopRace() {
-        horseRaceStart = false
+        horseRaceStart = false;
     }
     func horseWin(horse: Int) {
         wonhorse = horse + 1
     }
     
     var wonhorse = 0;
-    var horseRaceStart = false
+    var horseRaceStart = false;
 }

@@ -43,12 +43,12 @@ class HorseRaceView: UIView {
             
         //}
         
-        NSLog("DrawRect called")
+        //NSLog("DrawRect called")
         
     }
 
     @objc func update() {
-        print("Drawview Update")
+        //print("Drawview Update")
         
         drawx = drawx + hspeed
         drawy = drawy + vspeed

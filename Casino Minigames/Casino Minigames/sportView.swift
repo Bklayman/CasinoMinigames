@@ -36,7 +36,7 @@ class SportView: UIView {
     }
 
     @objc func update() {
-        print("Drawview Update")
+        //print("Drawview Update")
         setNeedsDisplay()
     }
 }

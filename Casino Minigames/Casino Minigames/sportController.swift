@@ -52,7 +52,7 @@ class SportController: UIViewController {
     }
     
     @objc func update() {
-        print("Update")
+        //print("Update")
         if WinningTeam.sharedTeamWin.gameStart == true {
             sportView.update()
         }
