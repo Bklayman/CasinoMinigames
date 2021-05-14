@@ -102,18 +102,21 @@ bool gameInProgress;
         /*On the first round, check if garbage. If so, 1/3 chance raising, 2/3 chance calling.
          If not garbage, 1/3 chance calling, 2/3 chance raising.*/
         case 2:
-            if(curIntPoints < 13){
-                if(dealerBet < 10 && arc4random_uniform(3) < 2){
-                    [self dealerCall];
-                } else {
-                    [self dealerRaise:arc4random_uniform(5)];
-                }
-            } else {
-                if(dealerBet < 10 && arc4random_uniform(3) < 2){
-                    [self dealerRaise:arc4random_uniform(5)];
-                } else {
-                    [self dealerCall];
-                }
+            switch(curIntPoints){
+                case 0 ... 12:
+                    if(dealerBet < 30 && arc4random_uniform(3) < 2){
+                        [self dealerCall];
+                    } else {
+                        [self dealerRaise:arc4random_uniform(5)];
+                    }
+                    break;
+                default:
+                    if(dealerBet < 30 && arc4random_uniform(3) < 2){
+                        [self dealerRaise:arc4random_uniform(5)];
+                    } else {
+                        [self dealerCall];
+                    }
+                    break;
             }
             break;
         /*On the second round, check if garbage. If so, 1/4 chance of folding, 3/4 chance of calling.
@@ -122,30 +125,35 @@ bool gameInProgress;
          If higher, 2/3 chance raising, 1/3 chance calling.
          */
         case 5:
-            if(curIntPoints < 13){
-                if(arc4random_uniform(4) < 3 && playerBet < 50){
-                    [self dealerCall];
-                } else {
-                    [self dealerFold];
-                }
-            } else if (curIntPoints < 222){
-                if(dealerBet > 70 || arc4random_uniform(3) < 2){
-                    [self dealerCall];
-                } else {
-                    [self dealerRaise:arc4random_uniform(10)];
-                }
-            } else if (curIntPoints < 419){
-                if(dealerBet > 80 || arc4random_uniform(2) < 1){
-                    [self dealerCall];
-                } else {
-                    [self dealerRaise:arc4random_uniform(10)];
-                }
-            } else {
-                if(dealerBet < 90 && arc4random_uniform(3) < 2){
-                    [self dealerRaise:arc4random_uniform(7)];
-                } else {
-                    [self dealerCall];
-                }
+            switch(curIntPoints){
+                case 0 ... 12:
+                    if(arc4random_uniform(4) < 3 && playerBet < 100){
+                        [self dealerCall];
+                    } else {
+                        [self dealerFold];
+                    }
+                    break;
+                case 13 ... 221:
+                    if(arc4random_uniform(4) < 3 && playerBet < 100){
+                        [self dealerCall];
+                    } else {
+                        [self dealerFold];
+                    }
+                    break;
+                case 222 ... 418:
+                    if(dealerBet > 140 || arc4random_uniform(3) < 2){
+                        [self dealerCall];
+                    } else {
+                        [self dealerRaise:arc4random_uniform(10)];
+                    }
+                    break;
+                default:
+                    if(dealerBet < 180 && arc4random_uniform(3) < 2){
+                        [self dealerRaise:arc4random_uniform(7)];
+                    } else {
+                        [self dealerCall];
+                    }
+                    break;
             }
             break;
         /*On the third round, check if garbage or one pair. If so, 1/3 chance of folding, 2/3 chance of calling.
@@ -154,30 +162,35 @@ bool gameInProgress;
          If higher, 2/3 chance raising, 1/3 chance calling.
         */
         case 6:
-            if(curIntPoints < 26){
-                if(playerBet < 70 && arc4random_uniform(3) < 2){
-                    [self dealerCall];
-                } else {
-                    [self dealerFold];
-                }
-            } else if (curIntPoints < 235){
-                if(dealerBet > 100 || arc4random_uniform(3) < 2){
-                    [self dealerCall];
-                } else {
-                    [self dealerRaise:arc4random_uniform(10)];
-                }
-            } else if (curIntPoints < 419){
-                if(dealerBet > 120 || arc4random_uniform(2) < 1){
-                    [self dealerCall];
-                } else {
-                    [self dealerRaise:arc4random_uniform(10)];
-                }
-            } else {
-                if(dealerBet < 140 && arc4random_uniform(3) < 2){
-                    [self dealerRaise:arc4random_uniform(7)];
-                } else {
-                    [self dealerCall];
-                }
+            switch(curIntPoints){
+                case 0 ... 25:
+                    if(playerBet < 140 && arc4random_uniform(3) < 2){
+                        [self dealerCall];
+                    } else {
+                        [self dealerFold];
+                    }
+                    break;
+                case 26 ... 234:
+                    if(dealerBet > 200 || arc4random_uniform(3) < 2){
+                        [self dealerCall];
+                    } else {
+                        [self dealerRaise:arc4random_uniform(10)];
+                    }
+                    break;
+                case 235 ... 418:
+                    if(dealerBet > 240 || arc4random_uniform(2) < 1){
+                        [self dealerCall];
+                    } else {
+                        [self dealerRaise:arc4random_uniform(10)];
+                    }
+                    break;
+                default:
+                    if(dealerBet < 280 && arc4random_uniform(3) < 2){
+                        [self dealerRaise:arc4random_uniform(7)];
+                    } else {
+                        [self dealerCall];
+                    }
+                    break;
             }
             break;
         /*On the fourth round, check if garbage, one pair. If so, 1/3 chance of folding, 2/3 chance of calling.
@@ -186,30 +199,35 @@ bool gameInProgress;
          If higher, 2/3 chance raising, 1/3 chance calling.
          */
         case 7:
-            if(curIntPoints < 26){
-                if(playerBet < 70 && arc4random_uniform(3) < 2){
-                    [self dealerCall];
-                } else {
-                    [self dealerFold];
-                }
-            } else if (curIntPoints < 235){
-                if(dealerBet > 120 || arc4random_uniform(3) < 2){
-                    [self dealerCall];
-                } else {
-                    [self dealerRaise:arc4random_uniform(10)];
-                }
-            } else if (curIntPoints < 419){
-                if(dealerBet > 150 || arc4random_uniform(2) < 1){
-                    [self dealerCall];
-                } else {
-                    [self dealerRaise:arc4random_uniform(10)];
-                }
-            } else {
-                if(arc4random_uniform(3) < 2){
-                    [self dealerRaise:arc4random_uniform(7)];
-                } else {
-                    [self dealerCall];
-                }
+            switch(curIntPoints){
+                case 0 ... 25:
+                    if(playerBet < 140 && arc4random_uniform(3) < 2){
+                        [self dealerCall];
+                    } else {
+                        [self dealerFold];
+                    }
+                    break;
+                case 26 ... 234:
+                    if(dealerBet > 240 || arc4random_uniform(3) < 2){
+                        [self dealerCall];
+                    } else {
+                        [self dealerRaise:arc4random_uniform(10)];
+                    }
+                    break;
+                case 235 ... 418:
+                    if(dealerBet > 300 || arc4random_uniform(2) < 1){
+                        [self dealerCall];
+                    } else {
+                        [self dealerRaise:arc4random_uniform(10)];
+                    }
+                    break;
+                default:
+                    if(arc4random_uniform(3) < 2){
+                        [self dealerRaise:arc4random_uniform(7)];
+                    } else {
+                        [self dealerCall];
+                    }
+                    break;
             }
             break;
     }
@@ -284,7 +302,6 @@ bool gameInProgress;
     }
 }
 
-//TODO Some winner calcs give errors
 - (void)determineWinner{
     gameInProgress = FALSE;
     _dealerCard1.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [Card getCardImageLink:dealerCards[0]]]];
@@ -297,11 +314,8 @@ bool gameInProgress;
         }
         PointObject* playerPoints = [self getHandPoints:playerCards];
         PointObject* dealerPoints = [self getHandPoints:dealerCards];
-        NSLog(@"%@%d%@%d", @"Player Points: ", [playerPoints getPoints], @" Dealer Points: ", [dealerPoints getPoints]);
         if([playerPoints getPoints] > [dealerPoints getPoints] || ([playerPoints getPoints] > [dealerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] < 0)){
             [Singleton sharedObject].totalMoney+= (playerBet + dealerBet);
-        } else if([dealerPoints getPoints] == [playerPoints getPoints] && [[playerPoints getKicker] compareValues:[dealerPoints getKicker]] == 0){
-            [Singleton sharedObject].totalMoney+= ((playerBet + dealerBet) / 2);
         }
     } else { //For any folds
         if([turnOrder[0] intValue] == 1){
